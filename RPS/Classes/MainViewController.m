@@ -31,7 +31,15 @@
     
 	[audioPlayer play];
     
-    UIImageView *backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Background.png"]];
+    UIImageView *backgroundImage = [[UIImageView alloc] init];
+    if (iPad) {
+        backgroundImage.frame = CGRectMake(0, 0, 768, 1024);
+        backgroundImage.image = [UIImage imageNamed:@"Background_iPad"];
+    }
+    else {
+        backgroundImage.frame = CGRectMake(0, 0, 320, 480);
+        backgroundImage.image = [UIImage imageNamed:@"Background.png"];
+    }
     
     [self.view addSubview:backgroundImage];
     [self.view sendSubviewToBack:backgroundImage];
@@ -64,13 +72,24 @@
 
 
 - (IBAction)showInfo:(id)sender {
-	optionsController = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
-	optionsController.delegate = self;
-	
-	optionsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-	[self presentModalViewController:optionsController animated:YES];
-	
-	[optionsController release];
+	if (iPad) {
+        optionsController = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView-iPad" bundle:nil];
+        optionsController.delegate = self;
+        
+        optionsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentModalViewController:optionsController animated:YES];
+        
+        [optionsController release];
+    }
+    else {
+        optionsController = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
+        optionsController.delegate = self;
+        
+        optionsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentModalViewController:optionsController animated:YES];
+        
+        [optionsController release];
+    }
 }
 
 - (void)reset {

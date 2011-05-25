@@ -11,6 +11,8 @@
 
 @class FlipsideViewController;
 
+#define iPad ([UIScreen mainScreen].bounds.size.height == 1024)
+
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate> {
 	IBOutlet UIImageView *firstPlayerImageView;
 	IBOutlet UIImageView *COMImageView;

@@ -8,12 +8,11 @@
 
 #import "MainViewController.h"
 #import "FlipsideViewController.h"
-#import "Singleton.h"
 
 
 @implementation MainViewController
 
-@synthesize firstPlayerImageView, COMImageView, segmentControl, optionsController, iDevicePoints, playerPoints, scoreboard, currentResult, buttonThrow;
+@synthesize firstPlayerImageView, COMImageView, segmentControl, optionsController, scoreboard, currentResult, buttonThrow;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
@@ -21,7 +20,9 @@
     
     playerPoints = 0;
     iDevicePoints = 0;
-    reachablePoints = 1;
+    
+    gameIsReset = YES;
+    [[NSUserDefaults standardUserDefaults] setBool:gameIsReset forKey:@"gameIsReset"];
     
     NSURL *url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/bgmusic.mp3", [[NSBundle mainBundle] resourcePath]]];
     
@@ -54,6 +55,10 @@
 	if (motion == UIEventSubtypeMotionShake) {
         [self play:nil];
 	}
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    reachablePoints = [[NSUserDefaults standardUserDefaults] integerForKey:@"reachablePoints"];
 }
 
 -(void) viewDidAppear:(BOOL)animated{
@@ -101,6 +106,8 @@
     firstPlayerImageView.image = nil;
     scoreboard.text = @"0 - 0";
     currentResult.text = @" ";
+    gameIsReset = YES;
+    [[NSUserDefaults standardUserDefaults] setBool:gameIsReset forKey:@"gameIsReset"];
     [pool release];
 }
 
@@ -108,36 +115,18 @@
 	NSInteger choice = segmentControl.selectedSegmentIndex;
 	int rnd = arc4random() % 3;
     
-    if (choice == 0) {
-		firstPlayerImageView.image = [UIImage imageNamed:@"rock"];
-	}
-    else {
-        if (choice == 1) {
-            firstPlayerImageView.image = [UIImage imageNamed:@"paper"];
-        }
-        else {
-            if (choice == 2) {
-                firstPlayerImageView.image = [UIImage imageNamed:@"scissor"];
-            }
-        }
-    }
+    gameIsReset = NO;
+    [[NSUserDefaults standardUserDefaults] setBool:gameIsReset forKey:@"gameIsReset"];
     
-    if (rnd == 0) {
-		COMImageView.image = [UIImage imageNamed:@"rock"];
-	}
-    else {
-        if (rnd == 1) {
-            COMImageView.image = [UIImage imageNamed:@"paper"];
-        }
-        else {
-            if (rnd == 2) {
-                COMImageView.image = [UIImage imageNamed:@"scissor"];
-                
-            }
-        }
-    }
+    if (choice == 0) firstPlayerImageView.image = [UIImage imageNamed:@"rock"];
+    else if (choice == 1) firstPlayerImageView.image = [UIImage imageNamed:@"paper"];
+    else firstPlayerImageView.image = [UIImage imageNamed:@"scissor"];
     
-    if (playerPoints < [[Singleton sharedSingleton] returnReachablePoints] || iDevicePoints < [[Singleton sharedSingleton] returnReachablePoints]) {
+    if (rnd == 0) COMImageView.image = [UIImage imageNamed:@"rock"];
+    else if (rnd == 1) COMImageView.image = [UIImage imageNamed:@"paper"];
+    else COMImageView.image = [UIImage imageNamed:@"scissor"];
+    
+    if (playerPoints < reachablePoints || iDevicePoints < reachablePoints) {
         if (choice == 0) {
             if (rnd == 0) {
                 currentResult.text = @"It's a tie";
@@ -185,7 +174,7 @@
                 }
             }
         }
-        if (playerPoints == [[Singleton sharedSingleton] returnReachablePoints] || iDevicePoints == [[Singleton sharedSingleton] returnReachablePoints]) {
+        if (playerPoints == reachablePoints || iDevicePoints == reachablePoints) {
             goto loop;
         }
     }

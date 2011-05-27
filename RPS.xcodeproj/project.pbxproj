@@ -26,7 +26,6 @@
 		5B53FA5F1380B2A7008B61A6 /* scissor.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B53FA5A1380B2A7008B61A6 /* scissor.png */; };
 		5B53FA601380B2A7008B61A6 /* Throw.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B53FA5B1380B2A7008B61A6 /* Throw.png */; };
 		5B53FA651380B2C6008B61A6 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B53FA621380B2C6008B61A6 /* FlipsideViewController.m */; };
-		5B53FA661380B2C6008B61A6 /* Singleton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B53FA641380B2C6008B61A6 /* Singleton.m */; };
 		5B53FA681380B2F7008B61A6 /* bgmusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B53FA671380B2F7008B61A6 /* bgmusic.mp3 */; };
 		5BB06D921378D8C300860034 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB06D911378D8C300860034 /* UIKit.framework */; };
 		5BB06D941378D8C300860034 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BB06D931378D8C300860034 /* Foundation.framework */; };
@@ -59,8 +58,6 @@
 		5B53FA5B1380B2A7008B61A6 /* Throw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Throw.png; path = Images/Throw.png; sourceTree = "<group>"; };
 		5B53FA611380B2C6008B61A6 /* FlipsideViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FlipsideViewController.h; path = Classes/FlipsideViewController.h; sourceTree = "<group>"; };
 		5B53FA621380B2C6008B61A6 /* FlipsideViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FlipsideViewController.m; path = Classes/FlipsideViewController.m; sourceTree = "<group>"; };
-		5B53FA631380B2C6008B61A6 /* Singleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Singleton.h; path = Classes/Singleton.h; sourceTree = "<group>"; };
-		5B53FA641380B2C6008B61A6 /* Singleton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Singleton.m; path = Classes/Singleton.m; sourceTree = "<group>"; };
 		5B53FA671380B2F7008B61A6 /* bgmusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bgmusic.mp3; path = Music/bgmusic.mp3; sourceTree = "<group>"; };
 		5BB06D8D1378D8C300860034 /* RPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5BB06D911378D8C300860034 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -115,7 +112,6 @@
 		5B1B22F7138D8AB700118DD1 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				5B1B22FA138D8AE500118DD1 /* Singleton */,
 				5B1B22F9138D8ACC00118DD1 /* App Delegate */,
 				5B1B22F8138D8AC800118DD1 /* Views */,
 			);
@@ -140,15 +136,6 @@
 				5BB06DA11378D8C300860034 /* RPSAppDelegate.m */,
 			);
 			name = "App Delegate";
-			sourceTree = "<group>";
-		};
-		5B1B22FA138D8AE500118DD1 /* Singleton */ = {
-			isa = PBXGroup;
-			children = (
-				5B53FA631380B2C6008B61A6 /* Singleton.h */,
-				5B53FA641380B2C6008B61A6 /* Singleton.m */,
-			);
-			name = Singleton;
 			sourceTree = "<group>";
 		};
 		5B1B22FB138D8B0A00118DD1 /* Images */ = {
@@ -311,7 +298,6 @@
 				5BB06DA21378D8C300860034 /* RPSAppDelegate.m in Sources */,
 				5BB06DA81378D8C300860034 /* MainViewController.m in Sources */,
 				5B53FA651380B2C6008B61A6 /* FlipsideViewController.m in Sources */,
-				5B53FA661380B2C6008B61A6 /* Singleton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

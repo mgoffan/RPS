@@ -8,7 +8,6 @@
 
 #import "FlipsideViewController.h"
 #import "MainViewController.h"
-#import "Singleton.h"
 
 
 @implementation FlipsideViewController
@@ -19,8 +18,16 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
-    if (segmentedControl.selectedSegmentIndex != [[Singleton sharedSingleton] indexPoints]) {
-        segmentedControl.selectedSegmentIndex = [[Singleton sharedSingleton] indexPoints];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    segmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"indexPoints"];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"gameIsReset"]) segmentedControl.enabled = YES;
+    else {
+        segmentedControl.enabled = NO;
+        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"RPS" message:@"Points cannot be changed during the game" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        [alertView release];
     }
 }
 
@@ -30,8 +37,16 @@
 }
 
 - (IBAction)segmentedControlValueChanged:(UIEvent *)event {
-    [[Singleton sharedSingleton] setReachablePoints:segmentedControl.selectedSegmentIndex var:0];
-    [[Singleton sharedSingleton] setReachablePoints:segmentedControl.selectedSegmentIndex var:1];
+    [[NSUserDefaults standardUserDefaults] setInteger:segmentedControl.selectedSegmentIndex forKey:@"indexPoints"];
+    if (segmentedControl.selectedSegmentIndex == 0) {
+        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"reachablePoints"];
+    }
+    else if (segmentedControl.selectedSegmentIndex == 1) {
+        [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"reachablePoints"];
+    }
+    else {
+        [[NSUserDefaults standardUserDefaults] setInteger:5 forKey:@"reachablePoints"];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

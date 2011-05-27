@@ -67,6 +67,7 @@
      Called when the application is about to terminate.
      See also applicationDidEnterBackground:.
      */
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"gameDidFinish"];
 }
 
 

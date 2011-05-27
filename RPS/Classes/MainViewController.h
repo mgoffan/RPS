@@ -9,7 +9,6 @@
 #import "FlipsideViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
-@class FlipsideViewController;
 
 #define iPad ([UIScreen mainScreen].bounds.size.height == 1024)
 
@@ -27,6 +26,8 @@
     NSInteger iDevicePoints;
     NSInteger reachablePoints;
     
+    BOOL gameIsReset;
+    
     AVAudioPlayer *audioPlayer;
 }
 
@@ -38,9 +39,6 @@
 @property (nonatomic, retain) IBOutlet UIButton *buttonThrow;
 
 @property (nonatomic, retain) FlipsideViewController *optionsController;
-
-@property (assign) NSInteger playerPoints;
-@property (assign) NSInteger iDevicePoints;
 
 - (IBAction)showInfo:(id)sender;
 - (IBAction)play:(id)sender;

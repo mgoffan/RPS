@@ -12,11 +12,25 @@
 
 @implementation MainViewController
 
-@synthesize firstPlayerImageView, COMImageView, segmentControl, optionsController, scoreboard, currentResult, buttonThrow;
+static NSString* lost;
+static NSString* tie;
+static NSString* won;
+
+static NSString* lostLost;
+static NSString* wonWon;
+
+@synthesize firstPlayerImageView, COMImageView, segmentControl, optionsController, scoreboard, currentResult, buttonThrow, appTitle;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    
+    lost = NSLocalizedString(@"Lost", @"");
+    tie = NSLocalizedString(@"Tie", @"");
+    won = NSLocalizedString(@"Won", @"");
+    
+    lostLost = NSLocalizedString(@"Lost Lost", @"");
+    wonWon = NSLocalizedString(@"Won Won", @"");
     
     playerPoints = 0;
     iDevicePoints = 0;
@@ -31,6 +45,14 @@
 	audioPlayer.numberOfLoops = -1;
     
 	[audioPlayer play];
+    
+    if (es) {
+        appTitle.text = NSLocalizedString(@"Title", @"");
+        
+        [segmentControl setTitle:NSLocalizedString(@"Rock", @"") forSegmentAtIndex:0];
+        [segmentControl setTitle:NSLocalizedString(@"Paper", @"") forSegmentAtIndex:1];
+        [segmentControl setTitle:NSLocalizedString(@"Scissors", @"") forSegmentAtIndex:2];
+    }
     
     UIImageView *backgroundImage = [[UIImageView alloc] init];
     if (iPad) {
@@ -129,16 +151,16 @@
     if (playerPoints < reachablePoints || iDevicePoints < reachablePoints) {
         if (choice == 0) {
             if (rnd == 0) {
-                currentResult.text = @"It's a tie";
+                currentResult.text = tie;
             } else {
                 if (rnd == 1) {
                     iDevicePoints++;
                     scoreboard.text = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
-                    currentResult.text = @"You've lost";
+                    currentResult.text = lost;
                 } else {
                     playerPoints++;
                     scoreboard.text = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
-                    currentResult.text = @"You've won";
+                    currentResult.text = won;
                 }
             }
         } else {
@@ -146,14 +168,14 @@
                 if (rnd == 0) {
                     playerPoints++;
                     scoreboard.text = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
-                    currentResult.text = @"You've won";
+                    currentResult.text = won;
                 } else {
                     if (rnd == 1) {
-                        currentResult.text = @"It's a tie";
+                        currentResult.text = tie;
                     } else {
                         iDevicePoints++;
                         scoreboard.text = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
-                        currentResult.text = @"You've lost";
+                        currentResult.text = lost;
                     }
                 }
             } else {
@@ -161,14 +183,14 @@
                     if (rnd == 0) {
                         iDevicePoints++;
                         scoreboard.text = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
-                        currentResult.text = @"You've lost";
+                        currentResult.text = lost;
                     } else {
                         if (rnd == 1) {
                             playerPoints++;
                             scoreboard.text = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
-                            currentResult.text = @"You've won";
+                            currentResult.text = won;
                         } else {
-                            currentResult.text = @"It's a tie";
+                            currentResult.text = tie;
                         }
                     }
                 }
@@ -183,7 +205,7 @@
         if (playerPoints > iDevicePoints) {
             UIAlertView *alertView = [[UIAlertView alloc]
                                       initWithTitle:@"RPS"
-                                      message:[NSString stringWithFormat:@"Congratulations you've beat me. You won %d - %d",playerPoints,iDevicePoints]
+                                      message:[NSString stringWithFormat:@"%@ %d - %d", wonWon,playerPoints,iDevicePoints]
                                       delegate:nil
                                       cancelButtonTitle:@"OK"
                                       otherButtonTitles:nil];
@@ -193,7 +215,7 @@
         else {
             UIAlertView *alertView = [[UIAlertView alloc]
                                       initWithTitle:@"RPS"
-                                      message:[NSString stringWithFormat:@"Haha. You suck. I won %d - %d",iDevicePoints,playerPoints]
+                                      message:[NSString stringWithFormat:@"%@ %d - %d", lostLost,iDevicePoints,playerPoints]
                                       delegate:nil
                                       cancelButtonTitle:@"OK"
                                       otherButtonTitles:nil];

@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  RPS
+
+  Created by Martin Goffan on 6/17/11.
+  Copyright 2011 __MyCompanyName__. All rights reserved.
+*/
+
+"Won" = "Ganaste";
+"Lost" = "Perdiste";
+"Tie" = "Empatamos";
+
+"Lost Lost" = "Perdiste. Segui participando ";
+"Won Won" = "Felicitaciones, me ganaste ";
+
+"Rock" = "Piedra";
+"Scissors" = "Tijera";
+"Paper" = "Papel";
+
+"Title" = "Piedra, Papel o Tijera";

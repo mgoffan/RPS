@@ -29,6 +29,7 @@
         [alertView show];
         [alertView release];
     }
+    [super viewWillAppear:animated];
 }
 
 

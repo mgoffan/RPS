@@ -13,6 +13,17 @@
 #define iPad ([UIScreen mainScreen].bounds.size.height == 1024)
 #define es ([[[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"] objectAtIndex:0] isEqualToString:@"es"])
 
+#define lost NSLocalizedString(@"Lost", @"")
+#define tie NSLocalizedString(@"Tie", @"")
+#define won NSLocalizedString(@"Won", @"")
+#define lostLost NSLocalizedString(@"Lost Lost", @"")
+#define wonWon NSLocalizedString(@"Won Won", @"")
+#define title NSLocalizedString(@"Title",@"")
+#define rock NSLocalizedString(@"Rock",@"")
+#define paper NSLocalizedString(@"Paper",@"")
+#define scissors NSLocalizedString(@"Scissors",@"")
+#define throw NSLocalizedString(@"Throw",@"")
+
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate> {
 	IBOutlet UIImageView *firstPlayerImageView;
 	IBOutlet UIImageView *COMImageView;

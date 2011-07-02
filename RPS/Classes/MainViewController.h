@@ -8,23 +8,28 @@
 
 #import "FlipsideViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import "SHK.h"
+#import "SHKFacebook.h"
+#import "MessageNotificationController.h"
 
 
 #define iPad ([UIScreen mainScreen].bounds.size.height == 1024)
 #define es ([[[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"] objectAtIndex:0] isEqualToString:@"es"])
 
-#define lost NSLocalizedString(@"Lost", @"")
-#define tie NSLocalizedString(@"Tie", @"")
-#define won NSLocalizedString(@"Won", @"")
-#define lostLost NSLocalizedString(@"Lost Lost", @"")
-#define wonWon NSLocalizedString(@"Won Won", @"")
-#define title NSLocalizedString(@"Title",@"")
-#define rock NSLocalizedString(@"Rock",@"")
-#define paper NSLocalizedString(@"Paper",@"")
-#define scissors NSLocalizedString(@"Scissors",@"")
-#define throw NSLocalizedString(@"Throw",@"")
+#define lost        NSLocalizedString(@"Lost", @"")
+#define tie         NSLocalizedString(@"Tie", @"")
+#define won         NSLocalizedString(@"Won", @"")
+#define lostLost    NSLocalizedString(@"Lost Lost", @"")
+#define wonWon      NSLocalizedString(@"Won Won", @"")
+#define header      NSLocalizedString(@"Title",@"")
+#define rock        NSLocalizedString(@"Rock",@"")
+#define paper       NSLocalizedString(@"Paper",@"")
+#define scissors    NSLocalizedString(@"Scissors",@"")
+#define throw       NSLocalizedString(@"Throw",@"")
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate> {
+@class MessageNotificationController;
+
+@interface MainViewController : UIViewController <FlipsideViewControllerDelegate, UIAlertViewDelegate> {
 	IBOutlet UIImageView *firstPlayerImageView;
 	IBOutlet UIImageView *COMImageView;
 	IBOutlet UISegmentedControl *segmentControl;
@@ -34,10 +39,12 @@
     IBOutlet UIButton *buttonThrow;
     
 	FlipsideViewController *optionsController;
+    MessageNotificationController *newNotification;
     
     NSInteger playerPoints;
     NSInteger iDevicePoints;
     NSInteger reachablePoints;
+    BOOL wonOrLost;
     
     BOOL gameIsReset;
     
@@ -56,5 +63,6 @@
 
 - (IBAction)showInfo:(id)sender;
 - (IBAction)play:(id)sender;
+- (void)sharing;
 
 @end

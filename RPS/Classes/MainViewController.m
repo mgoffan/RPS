@@ -8,6 +8,9 @@
 
 #import "MainViewController.h"
 #import "FlipsideViewController.h"
+#import "MessageNotificationController.h"
+#import "SHKFacebook.h"
+#import "SHK.h"
 
 
 @implementation MainViewController
@@ -17,14 +20,16 @@
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	[super viewDidLoad];
+    [SHK logoutOfAll];
     
     playerPoints    = 0;
     iDevicePoints   = 0;
+    wonOrLost       = NO;
     
     gameIsReset     = YES;
     [[NSUserDefaults standardUserDefaults] setBool:gameIsReset forKey:@"gameIsReset"];
     
-    NSURL *url      = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/bgmusic.mp3", [[NSBundle mainBundle] resourcePath]]];
+    NSURL *url      = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/bgsound.mp3", [[NSBundle mainBundle] resourcePath]]];
     
 	NSError *error;
 	audioPlayer     = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
@@ -34,7 +39,7 @@
     
     [buttonThrow setBackgroundImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];
     [buttonThrow setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    appTitle.text = title;
+    appTitle.text = header;
     
     [segmentControl setTitle:rock forSegmentAtIndex:0];
     [segmentControl setTitle:paper forSegmentAtIndex:1];
@@ -51,6 +56,10 @@
     [self.view sendSubviewToBack:backgroundImage];
     
     [backgroundImage release];
+    
+    newNotification = (iPad) ? [[MessageNotificationController alloc] initWithNibName:@"Notification-iPad" bundle:[NSBundle mainBundle]] : [[MessageNotificationController alloc] initWithNibName:@"Notification" bundle:[NSBundle mainBundle]];
+    newNotification.view.frame = CGRectMake(0, self.view.bounds.size.height + newNotification.view.bounds.size.height, newNotification.view.frame.size.width, newNotification.view.frame.size.width);
+    [self.view addSubview:newNotification.view];
 }
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
@@ -99,17 +108,44 @@
 }
 
 - (void)reset {
-    NSAutoreleasePool *pool     = [[NSAutoreleasePool alloc] init];
-    [NSThread sleepForTimeInterval:1.3];
+    //NSAutoreleasePool *pool     = [[NSAutoreleasePool alloc] init];
+    //[NSThread sleepForTimeInterval:2.3];
     playerPoints                = 0;
     iDevicePoints               = 0;
     COMImageView.image          = nil;
     firstPlayerImageView.image  = nil;
     scoreboard.text             = @"0 - 0";
     currentResult.text          = nil;
-    gameIsReset = YES;
+    gameIsReset                 = YES;
+    newNotification.myMessage   = nil;
+    newNotification.winnerLooserImageView.image = nil;
     [[NSUserDefaults standardUserDefaults] setBool:gameIsReset forKey:@"gameIsReset"];
-    [pool release];
+    //[pool release];
+}
+
+- (void)hideNotification {
+    [self performSelector:@selector(reset)];
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.0];
+    newNotification.view.frame = CGRectMake(0, self.view.bounds.size.height + newNotification.view.bounds.size.height, newNotification.view.frame.size.width, newNotification.view.frame.size.width);
+    [UIView commitAnimations];
+}
+
+- (void)presentNotificationWithPlayerScore:(NSInteger)playerScore iDeviceScore:(NSInteger)COMScore hasWon:(BOOL)win {
+    if (win) {
+        newNotification.myMessage = [NSString stringWithFormat:@"%@ %d - %d", wonWon, playerScore,COMScore];
+        [newNotification image:[UIImage imageNamed:@"trophy.png"]];
+    }
+    else {
+        newNotification.myMessage = [NSString stringWithFormat:@"%@ %d - %d", lostLost,playerScore, COMScore];
+        [newNotification image:[UIImage imageNamed:@"lost_inverted.png"]];
+    }
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.0];
+    newNotification.view.center = CGPointMake((self.view.bounds.size.width / 2), (self.view.bounds.size.height / 2));
+    [UIView commitAnimations];
+    
+    [self performSelector:@selector(hideNotification) withObject:nil afterDelay:5.0];
 }
 
 - (void)play:(id)sender {
@@ -178,30 +214,45 @@
     else {
     loop:
         if (playerPoints > iDevicePoints) {
-            UIAlertView *alertView = [[UIAlertView alloc]
-                                      initWithTitle:@"RPS"
-                                      message:[NSString stringWithFormat:@"%@ %d - %d", wonWon,playerPoints,iDevicePoints]
-                                      delegate:nil
-                                      cancelButtonTitle:@"OK"
-                                      otherButtonTitles:nil];
-            [alertView show];
-            [alertView release];
+            [self presentNotificationWithPlayerScore:playerPoints iDeviceScore:iDevicePoints hasWon:YES];
+            //myAlertView.message = [NSString stringWithFormat:@"%@ %d - %d", wonWon,playerPoints,iDevicePoints];
+            //[myAlertView show];
+            wonOrLost = YES;
         }
         else {
-            UIAlertView *alertView = [[UIAlertView alloc]
-                                      initWithTitle:@"RPS"
-                                      message:[NSString stringWithFormat:@"%@ %d - %d", lostLost,iDevicePoints,playerPoints]
-                                      delegate:nil
-                                      cancelButtonTitle:@"OK"
-                                      otherButtonTitles:nil];
-            [alertView show];
-            [alertView release];
+            [self presentNotificationWithPlayerScore:playerPoints iDeviceScore:iDevicePoints hasWon:NO];
+            //myAlertView.message = [NSString stringWithFormat:@"%@ %d - %d", lostLost,iDevicePoints,playerPoints];
+            //[myAlertView show];
+            wonOrLost = NO;
         }
         
-        [NSThread detachNewThreadSelector:@selector(reset) toTarget:self withObject:nil];
     }
 }
 
+- (void)sharing {
+    NSLog(@"aa");
+    NSString *message = [[NSString alloc] init];
+    if (wonOrLost) {
+        if (es) message = [NSString stringWithFormat:@"Le gane %d - %d a RPS.", playerPoints, iDevicePoints];
+        else message = [NSString stringWithFormat:@"I beat RPS %d - %d.", playerPoints, iDevicePoints];
+    }
+    else {
+        if (es) message = [NSString stringWithFormat:@"Perdi %d - %d con RPS.", iDevicePoints, playerPoints];
+        else message = [NSString stringWithFormat:@"I lost %d - %d with RPS.", iDevicePoints, playerPoints];
+    }
+    
+    SHKItem *item = [SHKItem text:message];
+    
+    // Get the ShareKit action sheet
+    SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
+    
+    // Display the action sheet
+    CGRect rect = newNotification.shareButton.frame;
+    if (iPad) [actionSheet showFromRect:rect inView:newNotification.view animated:YES];
+    else [actionSheet showInView:self.view];
+    
+    [message release];
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -233,7 +284,11 @@
     [COMImageView release];
     [buttonThrow release];
     [scoreboard release];
-    [currentResult release];
+    [currentResult release];    
+    [appTitle release];
+    [buttonThrow release];
+    [optionsController release];
+    [newNotification release];
 }
 
 

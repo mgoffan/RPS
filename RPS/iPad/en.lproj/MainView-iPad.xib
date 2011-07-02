@@ -249,7 +249,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">Rock, Paper, Scissors</string>
+						<string key="IBUIText"/>
 						<reference key="IBUITextColor" ref="78722139"/>
 						<reference key="IBUIHighlightedColor" ref="78722139"/>
 						<int key="IBUIBaselineAdjustment">1</int>

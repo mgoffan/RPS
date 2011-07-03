@@ -108,8 +108,6 @@
 }
 
 - (void)reset {
-    //NSAutoreleasePool *pool     = [[NSAutoreleasePool alloc] init];
-    //[NSThread sleepForTimeInterval:2.3];
     playerPoints                = 0;
     iDevicePoints               = 0;
     COMImageView.image          = nil;
@@ -120,7 +118,6 @@
     newNotification.myMessage   = nil;
     newNotification.winnerLooserImageView.image = nil;
     [[NSUserDefaults standardUserDefaults] setBool:gameIsReset forKey:@"gameIsReset"];
-    //[pool release];
 }
 
 - (void)hideNotification {
@@ -132,20 +129,39 @@
 }
 
 - (void)presentNotificationWithPlayerScore:(NSInteger)playerScore iDeviceScore:(NSInteger)COMScore hasWon:(BOOL)win {
+    [audioPlayer stop];
+    NSString *applausePath = [[NSBundle mainBundle] pathForResource:@"applause" ofType:@"mp3"];
+    NSString *booingPath = [[NSBundle mainBundle] pathForResource:@"booing" ofType:@"wav"];
+    
+    SystemSoundID soundID;
+    
     if (win) {
         newNotification.myMessage = [NSString stringWithFormat:@"%@ %d - %d", wonWon, playerScore,COMScore];
         [newNotification image:[UIImage imageNamed:@"trophy.png"]];
+        
+        AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:applausePath], &soundID);
+        
+        AudioServicesPlaySystemSound(soundID);
     }
     else {
         newNotification.myMessage = [NSString stringWithFormat:@"%@ %d - %d", lostLost,playerScore, COMScore];
         [newNotification image:[UIImage imageNamed:@"lost_inverted.png"]];
+        
+        AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:booingPath], &soundID);
+        
+        AudioServicesPlaySystemSound(soundID);
     }
+    
+    [applausePath release];
+    [booingPath release];
+    
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.0];
     newNotification.view.center = CGPointMake((self.view.bounds.size.width / 2), (self.view.bounds.size.height / 2));
     [UIView commitAnimations];
     
     [self performSelector:@selector(hideNotification) withObject:nil afterDelay:5.0];
+    [audioPlayer play];
 }
 
 - (void)play:(id)sender {
@@ -215,14 +231,10 @@
     loop:
         if (playerPoints > iDevicePoints) {
             [self presentNotificationWithPlayerScore:playerPoints iDeviceScore:iDevicePoints hasWon:YES];
-            //myAlertView.message = [NSString stringWithFormat:@"%@ %d - %d", wonWon,playerPoints,iDevicePoints];
-            //[myAlertView show];
             wonOrLost = YES;
         }
         else {
             [self presentNotificationWithPlayerScore:playerPoints iDeviceScore:iDevicePoints hasWon:NO];
-            //myAlertView.message = [NSString stringWithFormat:@"%@ %d - %d", lostLost,iDevicePoints,playerPoints];
-            //[myAlertView show];
             wonOrLost = NO;
         }
         
@@ -231,7 +243,7 @@
 
 - (void)sharing {
     NSLog(@"aa");
-    NSString *message = [[NSString alloc] init];
+    NSString *message;// = [[NSString alloc] init];
     if (wonOrLost) {
         if (es) message = [NSString stringWithFormat:@"Le gane %d - %d a RPS.", playerPoints, iDevicePoints];
         else message = [NSString stringWithFormat:@"I beat RPS %d - %d.", playerPoints, iDevicePoints];
@@ -247,8 +259,7 @@
     SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
     
     // Display the action sheet
-    CGRect rect = newNotification.shareButton.frame;
-    if (iPad) [actionSheet showFromRect:rect inView:newNotification.view animated:YES];
+    if (iPad) [self.view addSubview:actionSheet];
     else [actionSheet showInView:self.view];
     
     [message release];

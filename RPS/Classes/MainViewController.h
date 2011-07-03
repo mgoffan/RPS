@@ -8,6 +8,7 @@
 
 #import "FlipsideViewController.h"
 #import <AVFoundation/AVFoundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 #import "SHK.h"
 #import "SHKFacebook.h"
 #import "MessageNotificationController.h"

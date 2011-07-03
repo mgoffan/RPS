@@ -9,18 +9,28 @@
 #import "MainViewController.h"
 #import "FlipsideViewController.h"
 #import "MessageNotificationController.h"
-#import "SHKFacebook.h"
-#import "SHK.h"
 
 
 @implementation MainViewController
 
-@synthesize firstPlayerImageView, COMImageView, segmentControl, optionsController, scoreboard, currentResult, buttonThrow, appTitle;
+@synthesize firstPlayerImageView, COMImageView, segmentControl, optionsController, scoreboard, currentResult, buttonThrow, appTitle, facebook;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    [SHK logoutOfAll];
+    
+    facebook = [[Facebook alloc] initWithAppId:@"242507009093961"];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"FBAccessTokenKey"] 
+        && [defaults objectForKey:@"FBExpirationDateKey"]) {
+        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
+        facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
+    }
+    
+    if (![facebook isSessionValid]) {
+        [facebook authorize:nil delegate:self];
+    }
     
     playerPoints    = 0;
     iDevicePoints   = 0;
@@ -62,9 +72,22 @@
     [self.view addSubview:newNotification.view];
 }
 
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return [facebook handleOpenURL:url]; 
+}
+
+- (void)fbDidLogin {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
+    [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
+    [defaults synchronize];
+    
+}
+
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
 	if (motion == UIEventSubtypeMotionShake) {
         [self play:nil];
+        [facebook dialog:@"feed" andDelegate:self];
 	}
 }
 
@@ -243,7 +266,7 @@
 
 - (void)sharing {
     NSLog(@"aa");
-    NSString *message;// = [[NSString alloc] init];
+    NSString *message;
     if (wonOrLost) {
         if (es) message = [NSString stringWithFormat:@"Le gane %d - %d a RPS.", playerPoints, iDevicePoints];
         else message = [NSString stringWithFormat:@"I beat RPS %d - %d.", playerPoints, iDevicePoints];
@@ -252,17 +275,6 @@
         if (es) message = [NSString stringWithFormat:@"Perdi %d - %d con RPS.", iDevicePoints, playerPoints];
         else message = [NSString stringWithFormat:@"I lost %d - %d with RPS.", iDevicePoints, playerPoints];
     }
-    
-    SHKItem *item = [SHKItem text:message];
-    
-    // Get the ShareKit action sheet
-    SHKActionSheet *actionSheet = [SHKActionSheet actionSheetForItem:item];
-    
-    // Display the action sheet
-    if (iPad) [self.view addSubview:actionSheet];
-    else [actionSheet showInView:self.view];
-    
-    [message release];
 }
 
 - (void)didReceiveMemoryWarning {

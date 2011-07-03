@@ -10,7 +10,8 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
 #import "MessageNotificationController.h"
-#import "FBConnect.h"
+#import "SHK.h"
+#import "SHKFacebook.h"
 
 
 #define iPad ([UIScreen mainScreen].bounds.size.height == 1024)
@@ -29,7 +30,7 @@
 
 @class MessageNotificationController;
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate, FBSessionDelegate> {
+@interface MainViewController : UIViewController <FlipsideViewControllerDelegate> {
 	IBOutlet UIImageView *firstPlayerImageView;
 	IBOutlet UIImageView *COMImageView;
 	IBOutlet UISegmentedControl *segmentControl;
@@ -45,12 +46,9 @@
     NSInteger iDevicePoints;
     NSInteger reachablePoints;
     BOOL wonOrLost;
-    
     BOOL gameIsReset;
     
     AVAudioPlayer *audioPlayer;
-    
-    Facebook *facebook;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView *firstPlayerImageView;
@@ -60,8 +58,6 @@
 @property (nonatomic, retain) IBOutlet UILabel *appTitle;
 @property (nonatomic, retain) IBOutlet UILabel *currentResult;
 @property (nonatomic, retain) IBOutlet UIButton *buttonThrow;
-
-@property (nonatomic, retain) Facebook *facebook;
 
 @property (nonatomic, retain) FlipsideViewController *optionsController;
 

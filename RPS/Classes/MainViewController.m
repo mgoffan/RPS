@@ -13,24 +13,11 @@
 
 @implementation MainViewController
 
-@synthesize firstPlayerImageView, COMImageView, segmentControl, optionsController, scoreboard, currentResult, buttonThrow, appTitle, facebook;
+@synthesize firstPlayerImageView, COMImageView, segmentControl, optionsController, scoreboard, currentResult, buttonThrow, appTitle;
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
 	[super viewDidLoad];
-    
-    facebook = [[Facebook alloc] initWithAppId:@"242507009093961"];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([defaults objectForKey:@"FBAccessTokenKey"] 
-        && [defaults objectForKey:@"FBExpirationDateKey"]) {
-        facebook.accessToken = [defaults objectForKey:@"FBAccessTokenKey"];
-        facebook.expirationDate = [defaults objectForKey:@"FBExpirationDateKey"];
-    }
-    
-    if (![facebook isSessionValid]) {
-        [facebook authorize:nil delegate:self];
-    }
     
     playerPoints    = 0;
     iDevicePoints   = 0;
@@ -45,6 +32,7 @@
 	audioPlayer     = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
 	audioPlayer.numberOfLoops = -1;
     
+    [audioPlayer prepareToPlay];
 	[audioPlayer play];
     
     [buttonThrow setBackgroundImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];
@@ -72,22 +60,13 @@
     [self.view addSubview:newNotification.view];
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
-    return [facebook handleOpenURL:url]; 
-}
-
-- (void)fbDidLogin {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[facebook accessToken] forKey:@"FBAccessTokenKey"];
-    [defaults setObject:[facebook expirationDate] forKey:@"FBExpirationDateKey"];
-    [defaults synchronize];
-    
-}
+//- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+//    return [facebook handleOpenURL:url]; 
+//}
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
 	if (motion == UIEventSubtypeMotionShake) {
         [self play:nil];
-        [facebook dialog:@"feed" andDelegate:self];
 	}
 }
 
@@ -152,31 +131,48 @@
 }
 
 - (void)presentNotificationWithPlayerScore:(NSInteger)playerScore iDeviceScore:(NSInteger)COMScore hasWon:(BOOL)win {
-    [audioPlayer stop];
-    NSString *applausePath = [[NSBundle mainBundle] pathForResource:@"applause" ofType:@"mp3"];
-    NSString *booingPath = [[NSBundle mainBundle] pathForResource:@"booing" ofType:@"wav"];
+    [audioPlayer pause];
+    //NSString *applausePath = [[NSBundle mainBundle] pathForResource:@"applause" ofType:@"mp3"];
+    //NSString *booingPath = [[NSBundle mainBundle] pathForResource:@"booing" ofType:@"wav"];
     
-    SystemSoundID soundID;
+    //SystemSoundID soundID;
+    
+    NSURL *url;
+	NSError *error;
+	AVAudioPlayer *soundFX;// 
+	soundFX.numberOfLoops = 1;
     
     if (win) {
         newNotification.myMessage = [NSString stringWithFormat:@"%@ %d - %d", wonWon, playerScore,COMScore];
         [newNotification image:[UIImage imageNamed:@"trophy.png"]];
         
-        AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:applausePath], &soundID);
+        url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/applause.mp3", [[NSBundle mainBundle] resourcePath]]];
+        soundFX = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
         
-        AudioServicesPlaySystemSound(soundID);
+        [soundFX prepareToPlay];
+        [soundFX play];
+        //AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:applausePath], &soundID);
+        
+        //AudioServicesPlaySystemSound(soundID);
     }
     else {
         newNotification.myMessage = [NSString stringWithFormat:@"%@ %d - %d", lostLost,playerScore, COMScore];
         [newNotification image:[UIImage imageNamed:@"lost_inverted.png"]];
         
-        AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:booingPath], &soundID);
+        url = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/booing.wav", [[NSBundle mainBundle] resourcePath]]];
+        soundFX = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:&error];
         
-        AudioServicesPlaySystemSound(soundID);
+        [soundFX prepareToPlay];
+        [soundFX play];
+        //AudioServicesCreateSystemSoundID((CFURLRef)[NSURL fileURLWithPath:booingPath], &soundID);
+        
+        //AudioServicesPlaySystemSound(soundID);
     }
     
-    [applausePath release];
-    [booingPath release];
+    [soundFX release];
+    
+    //[applausePath release];
+    //[booingPath release];
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:1.0];
@@ -265,7 +261,6 @@
 }
 
 - (void)sharing {
-    NSLog(@"aa");
     NSString *message;
     if (wonOrLost) {
         if (es) message = [NSString stringWithFormat:@"Le gane %d - %d a RPS.", playerPoints, iDevicePoints];
@@ -275,6 +270,10 @@
         if (es) message = [NSString stringWithFormat:@"Perdi %d - %d con RPS.", iDevicePoints, playerPoints];
         else message = [NSString stringWithFormat:@"I lost %d - %d with RPS.", iDevicePoints, playerPoints];
     }
+    
+    SHKItem *item = [SHKItem text:message];
+    
+    [SHKFacebook shareItem:item];
 }
 
 - (void)didReceiveMemoryWarning {

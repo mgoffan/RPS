@@ -13,7 +13,16 @@
 
 @implementation MainViewController
 
-@synthesize firstPlayerImageView, COMImageView, segmentControl, optionsController, scoreboard, currentResult, buttonThrow, appTitle;
+@synthesize firstPlayerImageView;
+@synthesize COMImageView;
+@synthesize segmentControl;
+@synthesize optionsController;
+@synthesize scoreboard;
+@synthesize currentResult;
+@synthesize buttonThrow ;
+@synthesize appTitle;
+@synthesize newNotification;
+@synthesize audioPlayer;
 
 //App Setup
 #pragma mark App Setup
@@ -59,8 +68,6 @@
     [self.view sendSubviewToBack:backgroundImage];
     
     [backgroundImage release];
-    
-    [self performSelector:@selector(setupNotifications)];
 }
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -75,11 +82,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
     reachablePoints = [[NSUserDefaults standardUserDefaults] integerForKey:@"reachablePoints"];
 }
 
 -(void) viewDidAppear:(BOOL)animated{
 	[super viewDidAppear:animated];
+    
 	[self becomeFirstResponder];
 }
 
@@ -258,6 +268,9 @@
 }
 */
 
+- (MessageNotificationController *)newNotification {
+    return newNotification;
+}
 
 - (void)dealloc {
     [super dealloc];

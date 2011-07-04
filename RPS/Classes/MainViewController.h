@@ -60,6 +60,9 @@
 @property (nonatomic, retain) IBOutlet UIButton             *buttonThrow;
 
 @property (nonatomic, retain) FlipsideViewController        *optionsController;
+@property (nonatomic, retain, getter = newNotification) MessageNotificationController *newNotification;
+
+@property (nonatomic, retain) AVAudioPlayer *audioPlayer;
 
 - (IBAction)showInfo:(id)sender;
 - (IBAction)play:(id)sender;

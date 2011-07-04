@@ -6,17 +6,18 @@
   Copyright 2011 __MyCompanyName__. All rights reserved.
 */
 
-"Won" = "You've won";
-"Lost" = "You've lost";
-"Tie" = "It's a tie";
+//Gameplay
+"statusWon"     = "You've won";
+"statusLost"    = "You've lost";
+"statusTie"     = "It's a tie";
+"resultLost"    = "You lost. Try again %d - %d";
+"resultWon"     = "Congratulations you've beat me. You won %d - %d";
+"shareLost"     = "I lost %d - %d with RPS.";
+"shareWon"      = "I beat RPS %d - %d.";
 
-"Lost Lost" = "You lost. Try again ";
-"Won Won" = "Congratulations you've beat me. You won ";
-
-"Rock" = "Rock";
-"Scissors" = "Scissors";
-"Paper" = "Paper";
-
-"Title" = "Rock, Paper, Scissors";
-
-"Throw" = "Throw";
+//Interface
+"interfaceRock"      = "Rock";
+"interfaceScissors"  = "Scissors";
+"interfacePaper"     = "Paper";
+"interfaceTitle"     = "Rock, Paper, Scissors";
+"interfaceThrow"     = "Throw";

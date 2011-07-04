@@ -27,7 +27,11 @@
     // Add the main view controller's view to the window and display.
     [window addSubview:mainViewController.view];
     [window makeKeyAndVisible];
-
+    
+    [mainViewController setupGameLogic];
+    [mainViewController setupGameSound];
+    [mainViewController setupUserInterface];
+    
     return YES;
 }
 

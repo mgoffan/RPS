@@ -6,17 +6,18 @@
   Copyright 2011 __MyCompanyName__. All rights reserved.
 */
 
-"Won" = "Ganaste";
-"Lost" = "Perdiste";
-"Tie" = "Empatamos";
+//Gameplay
+"statusWon"     = "Ganaste";
+"statusLost"    = "Perdiste";
+"statusTie"     = "Empatamos";
+"resultLost"    = "Perdiste. Segui participando %d - %d";
+"resultWon"     = "Felicitaciones, me ganaste %d - %d";
+"shareLost"     = "Perdí %d - %d con RPS.";
+"shareWon"      = "Le gané %d - %d a RPS.";
 
-"Lost Lost" = "Perdiste. Segui participando ";
-"Won Won" = "Felicitaciones, me ganaste ";
-
-"Rock" = "Piedra";
-"Scissors" = "Tijera";
-"Paper" = "Papel";
-
-"Title" = "Piedra, Papel o Tijera";
-
-"Throw" = "Tirar";
+//Interface
+"interfaceRock"         = "Piedra";
+"interfaceScissors"     = "Tijera";
+"interfacePaper"        = "Papel";
+"interfaceTitle"        = "Piedra, Papel o Tijera";
+"interfaceThrow"        = "Tirar";

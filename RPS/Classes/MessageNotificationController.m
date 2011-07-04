@@ -42,13 +42,8 @@
     winnerLooserImageView.image = anImage;
 }
 
-//- (MainViewController *)mainController {
-//    NSLog(@"%@",[[UIApplication sharedApplication] delegate]);
-//	return (MainViewController *)MainViewController;
-//}
-
 - (void)share:(id)sender {
-    [self.mainController sharing];
+    [self.mainController sharingMyScore:[[NSUserDefaults standardUserDefaults] integerForKey:@"playerPoints"] device:[[NSUserDefaults standardUserDefaults] integerForKey:@"iDevicePoints"]];
 }
 
 - (void)dealloc {

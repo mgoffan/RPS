@@ -32,6 +32,7 @@
     [mainViewController setupGameSound];
     [mainViewController setupUserInterface];
     [mainViewController setupNotifications];
+    [mainViewController setupLogin];
     
     return YES;
 }

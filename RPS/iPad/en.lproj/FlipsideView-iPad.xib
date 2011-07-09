@@ -175,7 +175,7 @@
 								<string key="IBUITitle">Settings</string>
 								<object class="IBUIBarButtonItem" key="IBUILeftBarButtonItem" id="44726630">
 									<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-									<int key="IBUIStyle">2</int>
+									<int key="IBUIStyle">1</int>
 									<reference key="IBUINavigationItem" ref="125833087"/>
 									<int key="IBUISystemItemIdentifier">0</int>
 								</object>

@@ -93,8 +93,7 @@
 		5B4EDBD013BFA9380073F054 /* Notification_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4EDBCE13BFA9380073F054 /* Notification_iPad.png */; };
 		5B4EDBD113BFA9380073F054 /* Notification_iPhone.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4EDBCF13BFA9380073F054 /* Notification_iPhone.png */; };
 		5B4EDBD313BFAAB30073F054 /* trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4EDBD213BFAAB30073F054 /* trophy.png */; };
-		5B4EDBDB13BFBC890073F054 /* lost_inverted.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4EDBD913BFBC890073F054 /* lost_inverted.png */; };
-		5B4EDBDC13BFBC890073F054 /* lost.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4EDBDA13BFBC890073F054 /* lost.png */; };
+		5B4EDBDB13BFBC890073F054 /* lost.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B4EDBD913BFBC890073F054 /* lost.png */; };
 		5B53FA481380A81F008B61A6 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B53FA471380A81F008B61A6 /* AVFoundation.framework */; };
 		5B53FA5C1380B2A7008B61A6 /* Background.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B53FA571380B2A7008B61A6 /* Background.png */; };
 		5B53FA5D1380B2A7008B61A6 /* paper.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B53FA581380B2A7008B61A6 /* paper.png */; };
@@ -115,6 +114,13 @@
 		5BB06DA21378D8C300860034 /* RPSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB06DA11378D8C300860034 /* RPSAppDelegate.m */; };
 		5BB06DA51378D8C300860034 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BB06DA31378D8C300860034 /* MainWindow.xib */; };
 		5BB06DA81378D8C300860034 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB06DA71378D8C300860034 /* MainViewController.m */; };
+		5BD909C513C7AEE8007A0693 /* enter_down.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD909C313C7AEE8007A0693 /* enter_down.png */; };
+		5BD909C613C7AEE8007A0693 /* enter_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD909C413C7AEE8007A0693 /* enter_up.png */; };
+		5BD909CB13C7B124007A0693 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD909C913C7B124007A0693 /* LoginViewController.m */; };
+		5BD909CF13C7B171007A0693 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD909CD13C7B171007A0693 /* LoginViewController.xib */; };
+		5BD909D213C7B6BB007A0693 /* enter_down_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD909D013C7B6BB007A0693 /* enter_down_iPad.png */; };
+		5BD909D313C7B6BB007A0693 /* enter_up_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD909D113C7B6BB007A0693 /* enter_up_iPad.png */; };
+		5BD909D613C7B6EB007A0693 /* LoginViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD909D413C7B6EB007A0693 /* LoginViewController-iPad.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -270,8 +276,7 @@
 		5B4EDBCE13BFA9380073F054 /* Notification_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Notification_iPad.png; path = Images/Notification_iPad.png; sourceTree = "<group>"; };
 		5B4EDBCF13BFA9380073F054 /* Notification_iPhone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Notification_iPhone.png; path = Images/Notification_iPhone.png; sourceTree = "<group>"; };
 		5B4EDBD213BFAAB30073F054 /* trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = trophy.png; path = Images/trophy.png; sourceTree = "<group>"; };
-		5B4EDBD913BFBC890073F054 /* lost_inverted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lost_inverted.png; path = Images/lost_inverted.png; sourceTree = "<group>"; };
-		5B4EDBDA13BFBC890073F054 /* lost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lost.png; path = Images/lost.png; sourceTree = "<group>"; };
+		5B4EDBD913BFBC890073F054 /* lost.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lost.png; path = Images/lost.png; sourceTree = "<group>"; };
 		5B53FA471380A81F008B61A6 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5B53FA571380B2A7008B61A6 /* Background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background.png; path = Images/Background.png; sourceTree = "<group>"; };
 		5B53FA581380B2A7008B61A6 /* paper.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = paper.png; path = Images/paper.png; sourceTree = "<group>"; };
@@ -298,6 +303,14 @@
 		5BB06DA41378D8C300860034 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		5BB06DA61378D8C300860034 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
 		5BB06DA71378D8C300860034 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
+		5BD909C313C7AEE8007A0693 /* enter_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enter_down.png; path = Images/enter_down.png; sourceTree = "<group>"; };
+		5BD909C413C7AEE8007A0693 /* enter_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enter_up.png; path = Images/enter_up.png; sourceTree = "<group>"; };
+		5BD909C813C7B124007A0693 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Classes/LoginViewController.h; sourceTree = "<group>"; };
+		5BD909C913C7B124007A0693 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoginViewController.m; path = Classes/LoginViewController.m; sourceTree = "<group>"; };
+		5BD909CE13C7B171007A0693 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/LoginViewController.xib; sourceTree = "<group>"; };
+		5BD909D013C7B6BB007A0693 /* enter_down_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enter_down_iPad.png; path = Images/enter_down_iPad.png; sourceTree = "<group>"; };
+		5BD909D113C7B6BB007A0693 /* enter_up_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enter_up_iPad.png; path = Images/enter_up_iPad.png; sourceTree = "<group>"; };
+		5BD909D513C7B6EB007A0693 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = "iPad/en.lproj/LoginViewController-iPad.xib"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +339,7 @@
 				5B1B2303138D8B8E00118DD1 /* FlipsideView-iPad.xib */,
 				5B1B2305138D8B8E00118DD1 /* MainView-iPad.xib */,
 				5B1B22F1138D895600118DD1 /* MainWindow-iPad.xib */,
+				5BD909D413C7B6EB007A0693 /* LoginViewController-iPad.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -337,6 +351,7 @@
 				5BB06DA31378D8C300860034 /* MainWindow.xib */,
 				5B1B22FD138D8B6B00118DD1 /* FlipsideView.xib */,
 				5B1B22FF138D8B6B00118DD1 /* MainView.xib */,
+				5BD909CD13C7B171007A0693 /* LoginViewController.xib */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -354,6 +369,8 @@
 		5B1B22F8138D8AC800118DD1 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5BD909C813C7B124007A0693 /* LoginViewController.h */,
+				5BD909C913C7B124007A0693 /* LoginViewController.m */,
 				5BB06DA61378D8C300860034 /* MainViewController.h */,
 				5BB06DA71378D8C300860034 /* MainViewController.m */,
 				5B53FA611380B2C6008B61A6 /* FlipsideViewController.h */,
@@ -375,14 +392,15 @@
 		5B1B22FB138D8B0A00118DD1 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				5B4EDBD913BFBC890073F054 /* lost_inverted.png */,
-				5B4EDBDA13BFBC890073F054 /* lost.png */,
+				5B4EDBD913BFBC890073F054 /* lost.png */,
 				5B4EDBD213BFAAB30073F054 /* trophy.png */,
 				5B4EDBCE13BFA9380073F054 /* Notification_iPad.png */,
 				5B4EDBCF13BFA9380073F054 /* Notification_iPhone.png */,
 				5B4D74F313BF5A2F00DFF405 /* button.png */,
 				5B53FA571380B2A7008B61A6 /* Background.png */,
 				5B1B2311138D8CED00118DD1 /* Background_iPad.png */,
+				5BD909D013C7B6BB007A0693 /* enter_down_iPad.png */,
+				5BD909D113C7B6BB007A0693 /* enter_up_iPad.png */,
 				5B1B2315138D946500118DD1 /* Default-Portrait~iPad.png */,
 				5B1B2316138D946500118DD1 /* Default.png */,
 				5B46AF3913BF64DB00BB47C2 /* Default@2x.png */,
@@ -392,6 +410,8 @@
 				5B1B230A138D8BBD00118DD1 /* icon_57x57.png */,
 				5B1B230B138D8BBD00118DD1 /* icon_72x72.png */,
 				5B46AF3713BF643400BB47C2 /* icon_114x114.png */,
+				5BD909C313C7AEE8007A0693 /* enter_down.png */,
+				5BD909C413C7AEE8007A0693 /* enter_up.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -918,13 +938,18 @@
 				5B4EDBD013BFA9380073F054 /* Notification_iPad.png in Resources */,
 				5B4EDBD113BFA9380073F054 /* Notification_iPhone.png in Resources */,
 				5B4EDBD313BFAAB30073F054 /* trophy.png in Resources */,
-				5B4EDBDB13BFBC890073F054 /* lost_inverted.png in Resources */,
-				5B4EDBDC13BFBC890073F054 /* lost.png in Resources */,
+				5B4EDBDB13BFBC890073F054 /* lost.png in Resources */,
 				5B204EFF13C0183200E9E7E0 /* applause.mp3 in Resources */,
 				5B204F0013C0183200E9E7E0 /* booing.wav in Resources */,
 				5B2C723F13C0480200410B5C /* SHKSharers.plist in Resources */,
 				5B2C724413C0480200410B5C /* Localizable.strings in Resources */,
 				5B2C724B13C0480200410B5C /* FBConnect.bundle in Resources */,
+				5BD909C513C7AEE8007A0693 /* enter_down.png in Resources */,
+				5BD909C613C7AEE8007A0693 /* enter_up.png in Resources */,
+				5BD909CF13C7B171007A0693 /* LoginViewController.xib in Resources */,
+				5BD909D213C7B6BB007A0693 /* enter_down_iPad.png in Resources */,
+				5BD909D313C7B6BB007A0693 /* enter_up_iPad.png in Resources */,
+				5BD909D613C7B6EB007A0693 /* LoginViewController-iPad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1000,6 +1025,7 @@
 				5B2C726413C0480200410B5C /* SHKOAuthView.m in Sources */,
 				5B2C726513C0480200410B5C /* SHKShareMenu.m in Sources */,
 				5B2C726613C0480200410B5C /* SHKViewControllerWrapper.m in Sources */,
+				5BD909CB13C7B124007A0693 /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1095,6 +1121,22 @@
 				5BB06DA41378D8C300860034 /* en */,
 			);
 			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		5BD909CD13C7B171007A0693 /* LoginViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5BD909CE13C7B171007A0693 /* en */,
+			);
+			name = LoginViewController.xib;
+			sourceTree = "<group>";
+		};
+		5BD909D413C7B6EB007A0693 /* LoginViewController-iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5BD909D513C7B6EB007A0693 /* en */,
+			);
+			name = "LoginViewController-iPad.xib";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

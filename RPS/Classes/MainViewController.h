@@ -7,15 +7,20 @@
 //
 
 #import "FlipsideViewController.h"
+
 #import <AVFoundation/AVFoundation.h>
 #import <AudioToolbox/AudioToolbox.h>
+
 #import "MessageNotificationController.h"
+#import "LoginViewController.h"
+
 #import "SHK.h"
 #import "SHKFacebook.h"
 
 
 #define iPad                    ([UIScreen mainScreen].bounds.size.height == 1024)
 
+#define gameLocalization        NSLocalizedString(@"gameLocalization",nil)
 #define statusLost              NSLocalizedString(@"statusLost",nil)
 #define statusTie               NSLocalizedString(@"statusTie",nil)
 #define statusWon               NSLocalizedString(@"statusWon",nil)
@@ -26,10 +31,20 @@
 #define interfacePaper          NSLocalizedString(@"interfacePaper",nil)
 #define interfaceScissors       NSLocalizedString(@"interfaceScissors",nil)
 #define interfaceThrow          NSLocalizedString(@"interfaceThrow",nil)
+#define interfaceShare          NSLocalizedString(@"interfaceShare",nil)
 #define shareWon                NSLocalizedString(@"shareWon",nil)
 #define shareLost               NSLocalizedString(@"shareLost",nil)
 
+#define kAnimationDurationShow  2.0
+#define kAnimationDurationHide  0.75
+
+#define VIEW_WIDTH              self.view.bounds.size.width
+#define VIEW_HEIGHT             self.view.bounds.size.height
+#define NOTIFICATION_WIDTH      newNotification.view.frame.size.width
+#define NOTIFICATION_HEIGHT     newNotification.view.frame.size.height
+
 @class MessageNotificationController;
+@class LoginViewController;
 
 @interface MainViewController : UIViewController <FlipsideViewControllerDelegate> {
 	IBOutlet UIImageView            *firstPlayerImageView;
@@ -42,11 +57,13 @@
     
 	FlipsideViewController          *optionsController;
     MessageNotificationController   *newNotification;
+    LoginViewController             *loginViewController;
     
     NSInteger                       playerPoints;
     NSInteger                       iDevicePoints;
     NSInteger                       reachablePoints;
     BOOL                            gameIsReset;
+    BOOL                            userDidWin;
     
     AVAudioPlayer                   *audioPlayer;
 }
@@ -66,12 +83,13 @@
 
 - (IBAction)showInfo:(id)sender;
 - (IBAction)play:(id)sender;
-- (void)sharingMyScore:(NSInteger)pPoints device:(NSInteger)dPoints;
+- (void)share;
 
 - (void)setupUserInterface;
 - (void)setupNotifications;
 - (void)setupGameSound;
 - (void)setupGameLogic;
+- (void)setupLogin;
 
 
 @end

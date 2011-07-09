@@ -611,7 +611,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">61</int>
+			<int key="maxID">65</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -660,6 +660,7 @@
 							<string>buttonThrow</string>
 							<string>currentResult</string>
 							<string>firstPlayerImageView</string>
+							<string>loginView</string>
 							<string>scoreboard</string>
 							<string>segmentControl</string>
 						</object>
@@ -670,6 +671,7 @@
 							<string>UIButton</string>
 							<string>UILabel</string>
 							<string>UIImageView</string>
+							<string>UIView</string>
 							<string>UILabel</string>
 							<string>UISegmentedControl</string>
 						</object>
@@ -683,6 +685,7 @@
 							<string>buttonThrow</string>
 							<string>currentResult</string>
 							<string>firstPlayerImageView</string>
+							<string>loginView</string>
 							<string>scoreboard</string>
 							<string>segmentControl</string>
 						</object>
@@ -707,6 +710,10 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">firstPlayerImageView</string>
 								<string key="candidateClassName">UIImageView</string>
+							</object>
+							<object class="IBToOneOutletInfo">
+								<string key="name">loginView</string>
+								<string key="candidateClassName">UIView</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">scoreboard</string>

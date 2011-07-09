@@ -5,6 +5,7 @@
   Created by Martin Goffan on 6/17/11.
   Copyright 2011 __MyCompanyName__. All rights reserved.
 */
+"gameLocalization" = "RPS";
 
 //Gameplay
 "statusWon"     = "You've won";
@@ -21,3 +22,4 @@
 "interfacePaper"     = "Paper";
 "interfaceTitle"     = "Rock, Paper, Scissors";
 "interfaceThrow"     = "Throw";
+"interfaceShare"     = "Share last result";

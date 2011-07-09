@@ -5,6 +5,8 @@
   Created by Martin Goffan on 6/17/11.
   Copyright 2011 __MyCompanyName__. All rights reserved.
 */
+"gameLocalization" = "PPoT";
+
 
 //Gameplay
 "statusWon"     = "Ganaste";
@@ -21,3 +23,4 @@
 "interfacePaper"        = "Papel";
 "interfaceTitle"        = "Piedra, Papel o Tijera";
 "interfaceThrow"        = "Tirar";
+"interfaceShare"        = "Compartir el último resultado";

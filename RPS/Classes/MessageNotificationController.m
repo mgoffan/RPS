@@ -43,7 +43,7 @@
 }
 
 - (void)share:(id)sender {
-    [self.mainController sharingMyScore:[[NSUserDefaults standardUserDefaults] integerForKey:@"playerPoints"] device:[[NSUserDefaults standardUserDefaults] integerForKey:@"iDevicePoints"]];
+    [self.mainController share];
 }
 
 - (void)dealloc {

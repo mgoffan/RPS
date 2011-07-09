@@ -320,6 +320,7 @@
     [newNotification release];
     [audioPlayer release];
     [loginViewController release];
+    
 }
 
 @end

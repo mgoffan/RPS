@@ -303,6 +303,7 @@
 		5BB06DA41378D8C300860034 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		5BB06DA61378D8C300860034 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = Classes/MainViewController.h; sourceTree = "<group>"; };
 		5BB06DA71378D8C300860034 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = MainViewController.m; path = Classes/MainViewController.m; sourceTree = "<group>"; };
+		5BC2A99413CA1073007F5951 /* LocalizedStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalizedStrings.h; path = Classes/LocalizedStrings.h; sourceTree = "<group>"; };
 		5BD909C313C7AEE8007A0693 /* enter_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enter_down.png; path = Images/enter_down.png; sourceTree = "<group>"; };
 		5BD909C413C7AEE8007A0693 /* enter_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enter_up.png; path = Images/enter_up.png; sourceTree = "<group>"; };
 		5BD909C813C7B124007A0693 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoginViewController.h; path = Classes/LoginViewController.h; sourceTree = "<group>"; };
@@ -361,6 +362,7 @@
 			children = (
 				5B2C718A13C0480200410B5C /* ShareKit */,
 				5B1B22F9138D8ACC00118DD1 /* App Delegate */,
+				5BC2A99413CA1073007F5951 /* LocalizedStrings.h */,
 				5B1B22F8138D8AC800118DD1 /* Views */,
 			);
 			name = Classes;

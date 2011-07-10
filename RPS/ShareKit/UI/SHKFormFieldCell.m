@@ -52,7 +52,8 @@
 {
 	if (textField == nil)
 	{
-		self.textField = [[UITextField alloc] initWithFrame:CGRectMake(0,0,0,25)];
+        UITextField *aTF = [[UITextField alloc] initWithFrame:CGRectMake(0,0,0,25)];
+		self.textField = aTF;
 		textField.clearsOnBeginEditing = NO;
 		textField.returnKeyType = UIReturnKeyDone;
 		textField.font = [UIFont systemFontOfSize:17];
@@ -62,6 +63,7 @@
 		textField.delegate = form;
 		[self.contentView addSubview:textField];
 		[textField release];
+        [aTF release];
 		
 		[self setValue:tmpValue];
 	}
@@ -89,10 +91,12 @@
 	{
 		if (toggle == nil)
 		{
-			self.toggle = [[UISwitch alloc] initWithFrame:CGRectZero];	
+            UISwitch *aS = [[UISwitch alloc] initWithFrame:CGRectZero];
+			self.toggle = aS;
 			[self.contentView addSubview:toggle];
 			[self setValue:tmpValue];
 			[toggle release];
+            [aS release];
 		}
 		
 		toggle.frame = CGRectMake(self.contentView.bounds.size.width-toggle.bounds.size.width-SHK_FORM_CELL_PAD_RIGHT,

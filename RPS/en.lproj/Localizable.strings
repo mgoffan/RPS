@@ -23,3 +23,5 @@
 "interfaceTitle"     = "Rock, Paper, Scissors";
 "interfaceThrow"     = "Throw";
 "interfaceShare"     = "Share last result";
+"interfaceSettings"  = "Settings";
+"interfaceReach"     = "Reachable Points";

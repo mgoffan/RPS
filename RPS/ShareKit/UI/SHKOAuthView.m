@@ -50,12 +50,13 @@
 																								  action:@selector(cancel)] autorelease] animated:NO];
 		
 		self.delegate = d;
-		
-		self.webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+		UIWebView *aWebView = [[UIWebView alloc] initWithFrame:CGRectZero];
+		self.webView = aWebView;
 		webView.delegate = self;
 		webView.scalesPageToFit = YES;
 		webView.dataDetectorTypes = UIDataDetectorTypeNone;
 		[webView release];
+        [aWebView release];
 		
 		[webView loadRequest:[NSURLRequest requestWithURL:authorizeURL]];		
 		
@@ -132,10 +133,14 @@
 {
 	if (spinner == nil)
 	{
-		self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-		[self.navigationItem setRightBarButtonItem:[[[UIBarButtonItem alloc] initWithCustomView:spinner] autorelease] animated:NO];
+        UIActivityIndicatorView *aInd = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        UIBarButtonItem *barItem = [[UIBarButtonItem alloc] initWithCustomView:spinner];
+		self.spinner = aInd;
+		[self.navigationItem setRightBarButtonItem:barItem animated:NO];
 		spinner.hidesWhenStopped = YES;
 		[spinner release];
+        [aInd release];
+        [barItem release];
 	}
 	
 	[spinner startAnimating];

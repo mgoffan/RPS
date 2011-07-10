@@ -24,3 +24,5 @@
 "interfaceTitle"        = "Piedra, Papel o Tijera";
 "interfaceThrow"        = "Tirar";
 "interfaceShare"        = "Compartir el último resultado";
+"interfaceSettings"     = "Ajustes";
+"interfaceReach"        = "Puntos a alcanzar";

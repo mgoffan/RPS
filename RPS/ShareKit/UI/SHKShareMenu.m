@@ -53,16 +53,14 @@
 	if (self = [super initWithStyle:style])
 	{
 		self.title = SHKLocalizedString(@"Share");
+		UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:SHKLocalizedString(@"Edit") style:UIBarButtonItemStyleBordered target:self action:@selector(edit)];
+        
+		self.navigationItem.leftBarButtonItem = leftItem;
+		self.navigationItem.rightBarButtonItem = rightItem;
 		
-		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-																							  target:self
-																							  action:@selector(cancel)];
-		
-		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:SHKLocalizedString(@"Edit")
-																				  style:UIBarButtonItemStyleBordered
-																				 target:self
-																				 action:@selector(edit)];
-		
+        [leftItem release];
+        [rightItem release];
 	}
 	return self;
 }

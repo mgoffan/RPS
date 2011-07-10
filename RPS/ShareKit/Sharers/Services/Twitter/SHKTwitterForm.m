@@ -48,15 +48,15 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
     if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
-	{		
-		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-																							  target:self
-																							  action:@selector(cancel)];
-		
-		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Send to Twitter"
-																				  style:UIBarButtonItemStyleDone
-																				 target:self
-																				 action:@selector(save)];
+	{
+        UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+        UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"Send to Twitter" style:UIBarButtonItemStyleDone target:self action:@selector(save)];
+        
+		self.navigationItem.leftBarButtonItem = leftItem;
+		self.navigationItem.rightBarButtonItem = rightItem;
+        
+        [leftItem release];
+        [rightItem release];
     }
     return self;
 }
@@ -68,8 +68,9 @@
 	[super loadView];
 	
 	self.view.backgroundColor = [UIColor whiteColor];
-	
-	self.textView = [[UITextView alloc] initWithFrame:self.view.bounds];
+    
+    UITextView* aTextView = [[UITextView alloc] initWithFrame:self.view.bounds];
+	self.textView = aTextView;
 	textView.delegate = self;
 	textView.font = [UIFont systemFontOfSize:15];
 	textView.contentInset = UIEdgeInsetsMake(5,5,0,0);
@@ -78,6 +79,7 @@
 	textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	
 	[self.view addSubview:textView];
+    [aTextView release];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -153,7 +155,8 @@
 {
 	if (counter == nil)
 	{
-		self.counter = [[UILabel alloc] initWithFrame:CGRectZero];
+        UILabel* aLabel = [[UILabel alloc] initWithFrame:CGRectZero];
+		self.counter = aLabel;
 		counter.backgroundColor = [UIColor clearColor];
 		counter.opaque = NO;
 		counter.font = [UIFont boldSystemFontOfSize:14];
@@ -166,6 +169,7 @@
 		[self layoutCounter];
 		
 		[counter release];
+        [aLabel release];
 	}
 	
 	int count = (hasAttachment?115:140) - textView.text.length;

@@ -25,7 +25,9 @@
         myMessage = [[NSString alloc] init];
         winnerLooserImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 68, 68)];
         [winnerLooserImageView setContentMode:UIViewContentModeScaleToFill];
-        self.mainController = [[MainViewController alloc] init];
+        MainViewController *aMainViewController = [[MainViewController alloc] init];
+        self.mainController = aMainViewController;
+        [aMainViewController release];
     }
     return self;
 }

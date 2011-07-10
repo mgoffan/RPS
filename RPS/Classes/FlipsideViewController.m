@@ -12,12 +12,18 @@
 
 @implementation FlipsideViewController
 
-@synthesize delegate, segmentedControl, mainController;
+@synthesize delegate, segmentedControl, mainController, navItem, pointsLabel;
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
+    myAlertView = [[UIAlertView alloc] initWithTitle:@"RPS" message:@"Points cannot be changed during the game" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(done)];
+    self.navItem.leftBarButtonItem = backItem;
+    self.navItem.title             = interfaceSettings;
+    self.pointsLabel.text          = interfaceReach;
+    [backItem release];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -25,15 +31,16 @@
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"gameIsReset"]) segmentedControl.enabled = YES;
     else {
         segmentedControl.enabled = NO;
-        UIAlertView * alertView = [[UIAlertView alloc] initWithTitle:@"RPS" message:@"Points cannot be changed during the game" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
-        [alertView release];
+        [myAlertView show];
     }
     [super viewWillAppear:animated];
 }
 
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [self.delegate flipsideViewControllerDidFinish:self];
+}
 
-- (IBAction)done:(id)sender {
+- (void)done {
 	[self.delegate flipsideViewControllerDidFinish:self];
 }
 

@@ -17,23 +17,9 @@
 #import "SHK.h"
 #import "SHKFacebook.h"
 
+#import "LocalizedStrings.h"
 
 #define iPad                    ([UIScreen mainScreen].bounds.size.height == 1024)
-
-#define gameLocalization        NSLocalizedString(@"gameLocalization",nil)
-#define statusLost              NSLocalizedString(@"statusLost",nil)
-#define statusTie               NSLocalizedString(@"statusTie",nil)
-#define statusWon               NSLocalizedString(@"statusWon",nil)
-#define resultLost              NSLocalizedString(@"resultLost",nil)
-#define resultWon               NSLocalizedString(@"resultWon",nil)
-#define interfaceTitle          NSLocalizedString(@"interfaceTitle",nil)
-#define interfaceRock           NSLocalizedString(@"interfaceRock",nil)
-#define interfacePaper          NSLocalizedString(@"interfacePaper",nil)
-#define interfaceScissors       NSLocalizedString(@"interfaceScissors",nil)
-#define interfaceThrow          NSLocalizedString(@"interfaceThrow",nil)
-#define interfaceShare          NSLocalizedString(@"interfaceShare",nil)
-#define shareWon                NSLocalizedString(@"shareWon",nil)
-#define shareLost               NSLocalizedString(@"shareLost",nil)
 
 #define kAnimationDurationShow  2.0
 #define kAnimationDurationHide  0.75

@@ -148,9 +148,6 @@
     gameIsReset             = NO;
     [[NSUserDefaults standardUserDefaults] setBool:gameIsReset forKey:@"gameIsReset"];
     
-    UIImage *rock = [[UIImage alloc] init];
-    rock    = [UIImage imageNamed:@"rock"];
-    
     firstPlayerImageView.image = (choice == 0) ? [UIImage imageNamed:@"rock"] : (choice == 1) ? [UIImage imageNamed:@"paper"] : [UIImage imageNamed:@"scissor"];
     
     COMImageView.image = (rnd == 0) ? [UIImage imageNamed:@"rock"] : (rnd == 1) ? [UIImage imageNamed:@"paper"] : [UIImage imageNamed:@"scissor"];
@@ -210,12 +207,11 @@
     }
     else {
     loop:
+        [[NSUserDefaults standardUserDefaults] setInteger:playerPoints forKey:@"playerPoints"];
+        [[NSUserDefaults standardUserDefaults] setInteger:iDevicePoints forKey:@"iDevicePoints"];
         userDidWin = (playerPoints > iDevicePoints) ? YES : NO;
         if (playerPoints > iDevicePoints) [self presentNotification];
         else [self presentNotification];
-        
-        [[NSUserDefaults standardUserDefaults] setInteger:playerPoints forKey:@"playerPoints"];
-        [[NSUserDefaults standardUserDefaults] setInteger:iDevicePoints forKey:@"iDevicePoints"];
     }
 }
 
@@ -320,7 +316,6 @@
     [newNotification release];
     [audioPlayer release];
     [loginViewController release];
-    
 }
 
 @end

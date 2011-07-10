@@ -7,22 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LocalizedStrings.h"
 
 @protocol FlipsideViewControllerDelegate;
 
 @class MainViewController;
 
-@interface FlipsideViewController : UIViewController {
+@interface FlipsideViewController : UIViewController <UIAlertViewDelegate>{
 	id <FlipsideViewControllerDelegate> delegate;
-	IBOutlet UISegmentedControl *segmentedControl;
     MainViewController *mainController;
+    UISegmentedControl *segmentedControl;
+    UIAlertView *myAlertView;
+    UINavigationItem *navItem;
+    UILabel *pointsLabel;
 }
 
 @property (nonatomic, assign) id <FlipsideViewControllerDelegate> delegate;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, retain) MainViewController *mainController;
+@property (nonatomic, retain) IBOutlet UINavigationItem *navItem;
+@property (nonatomic, retain) IBOutlet UILabel *pointsLabel;
 
-- (IBAction)done:(id)sender;
+- (IBAction)segmentedControlValueChanged:(UIEvent *)event;
 @end
 
 

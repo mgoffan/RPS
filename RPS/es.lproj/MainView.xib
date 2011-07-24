@@ -96,7 +96,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Rock, Paper, Scissors</string>
+						<string key="IBUIText">Piedra, Papel o Tijera</string>
 						<object class="NSColor" key="IBUITextColor" id="825071030">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -177,17 +177,12 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<string key="IBUINormalTitle">Throw</string>
 						<reference key="IBUIHighlightedTitleColor" ref="825071030"/>
 						<reference key="IBUIDisabledTitleColor" ref="931906886"/>
 						<reference key="IBUINormalTitleColor" ref="931906886"/>
 						<object class="NSColor" key="IBUINormalTitleShadowColor" id="650100514">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MC41AA</bytes>
-						</object>
-						<object class="NSCustomResource" key="IBUINormalBackgroundImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">button.png</string>
 						</object>
 						<object class="IBUIFontDescription" key="IBUIFontDescription">
 							<string key="name">Helvetica-Bold</string>
@@ -234,9 +229,9 @@
 						<int key="IBSelectedSegmentIndex">0</int>
 						<object class="NSArray" key="IBSegmentTitles">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>Rock</string>
-							<string>Paper</string>
-							<string>Scissors</string>
+							<string>Piedra</string>
+							<string>Papel</string>
+							<string>Tijera</string>
 						</object>
 						<object class="NSMutableArray" key="IBSegmentWidths">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -639,7 +634,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABCYAAAwuAAAA</bytes>
 					</object>
-					<integer value="1"/>
+					<integer value="2"/>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABDCwAAw24AAA</bytes>
@@ -800,10 +795,6 @@
 		</object>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">button.png</string>
-			<string key="NS.object.0">{161, 36}</string>
-		</object>
 		<string key="IBCocoaTouchPluginVersion">865</string>
 	</data>
 </archive>

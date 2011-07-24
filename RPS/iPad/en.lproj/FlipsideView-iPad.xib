@@ -51,7 +51,7 @@
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="646184912"/>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<object class="NSMutableArray" key="IBUIItems">
+						<object class="NSArray" key="IBUIItems">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUINavigationItem" id="125833087">
 								<reference key="IBUINavigationBar" ref="518983621"/>
@@ -135,7 +135,7 @@
 					<object class="IBUITextView" id="229842161">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 136}, {768, 868}}</string>
+						<string key="NSFrame">{{0, 115}, {768, 888}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>
@@ -247,10 +247,10 @@
 						<reference key="object" ref="191373211"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<reference ref="229842161"/>
 							<reference ref="518983621"/>
 							<reference ref="1033093996"/>
 							<reference ref="646184912"/>
+							<reference ref="229842161"/>
 						</object>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -341,7 +341,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">34</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

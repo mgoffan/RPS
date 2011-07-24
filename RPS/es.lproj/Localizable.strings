@@ -18,11 +18,15 @@
 "shareWon"      = "Le gané %d - %d a RPS.";
 
 //Interface
-"interfaceRock"         = "Piedra";
-"interfaceScissors"     = "Tijera";
-"interfacePaper"        = "Papel";
-"interfaceTitle"        = "Piedra, Papel o Tijera";
-"interfaceThrow"        = "Tirar";
-"interfaceShare"        = "Compartir el último resultado";
-"interfaceSettings"     = "Ajustes";
-"interfaceReach"        = "Puntos a alcanzar";
+//"interfaceRock"         = "Piedra";
+//"interfaceScissors"     = "Tijera";
+//"interfacePaper"        = "Papel";
+//"interfaceTitle"        = "Piedra, Papel o Tijera";
+//"interfaceThrow"        = "Tirar";
+//"interfaceShare"        = "Compartir";
+//"interfaceSettings"     = "Ajustes";
+//"interfaceReach"        = "Puntos a alcanzar";
+//"interfaceMusic"        = "Musica del juego";
+
+//Notifications
+"notificationPointChange"   = "No se pueden cambiar los puntos durante un juego.";

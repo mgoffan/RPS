@@ -21,9 +21,14 @@
 @synthesize scoreboard;
 @synthesize currentResult;
 @synthesize buttonThrow ;
+@synthesize multiplayerButton;
 @synthesize appTitle;
 @synthesize newNotification;
-@synthesize audioPlayer;
+
+- (void)flush:(id)anObject {
+    [anObject release];
+    anObject = nil;
+}
 
 //App Setup
 #pragma mark App Setup
@@ -35,14 +40,6 @@
     [[NSUserDefaults standardUserDefaults] setBool:gameIsReset forKey:@"gameIsReset"];
 }
 
-- (void)setupGameSound {
-    NSURL *url      = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@/bgsound.mp3", [[NSBundle mainBundle] resourcePath]]];
-	audioPlayer     = [[AVAudioPlayer alloc] initWithContentsOfURL:url error:NULL];
-	audioPlayer.numberOfLoops = -1;
-    
-	[audioPlayer play];
-}
-
 - (void)setupNotifications {
     newNotification = (iPad) ? [[MessageNotificationController alloc] initWithNibName:@"Notification-iPad" bundle:[NSBundle mainBundle]] : [[MessageNotificationController alloc] initWithNibName:@"Notification" bundle:[NSBundle mainBundle]];
     
@@ -52,14 +49,18 @@
     [self.view addSubview:newNotification.view];
 }
 
+- (void)animationDidStop:(NSString *)animID finished:(BOOL)didFinish context:(void *)context {
+    [self flush:loginViewController];
+}
+
 - (void)setupLogin {
     loginViewController = (iPad) ? [[LoginViewController alloc] initWithNibName:@"LoginViewController-iPad" bundle:[NSBundle mainBundle]] : [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
     [self.view addSubview:loginViewController.view];
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    [UIView setAnimationDelay:2.5];
-    [UIView setAnimationDuration:1.0];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDuration:1.5];
     
     loginViewController.loginUp.frame = CGRectMake(0, -loginViewController.loginUp.frame.size.width, loginViewController.loginUp.frame.size.width, loginViewController.loginUp.frame.size.height);
     loginViewController.loginDown.frame = CGRectMake(0, self.view.frame.size.height + loginViewController.loginDown.frame.size.height, loginViewController.loginDown.frame.size.width, loginViewController.loginDown.frame.size.height);
@@ -70,19 +71,6 @@
 }
 
 - (void)setupUserInterface {
-    //Other
-    appTitle.text = interfaceTitle;
-    
-    //Button
-    [buttonThrow setBackgroundImage:[UIImage imageNamed:@"button"] forState:UIControlStateNormal];
-    [buttonThrow setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [buttonThrow setTitle:interfaceThrow forState:UIControlStateNormal];
-    
-    //Segment Control
-    [segmentControl setTitle:interfaceRock forSegmentAtIndex:0];
-    [segmentControl setTitle:interfacePaper forSegmentAtIndex:1];
-    [segmentControl setTitle:interfaceScissors forSegmentAtIndex:2];
-    
     //Background
     UIImageView *backgroundImage = [[UIImageView alloc] init];
     
@@ -230,6 +218,63 @@
 	}
 }
 
+//GameKit Methods
+#pragma mark GameKit Methods
+
+- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
+}
+
+- (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
+    
+}
+
+- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID {
+    [gameSession acceptConnectionFromPeer:peerID error:nil];
+}
+
+- (void)session:(GKSession *)session didFailWithError:(NSError *)error {
+    
+}
+
+- (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
+    
+}
+
+- (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker {
+    [picker dismiss];
+}
+
+- (GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type {
+    [picker dismiss];
+    return gameSession;
+}
+
+- (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session {
+    [picker dismiss];
+    gameSession = session;
+}
+
+- (IBAction)hostMatch:(id)sender {
+    GKPeerPickerController *peerPickerController = [[[GKPeerPickerController alloc] init] autorelease];
+    [peerPickerController show];
+    
+    [gameSession initWithSessionID:nil displayName:nil sessionMode:GKSessionModePeer];
+    gameSession.available = YES;
+    gameSession.delegate  = self;
+//    GKMatchRequest *request = [[[GKMatchRequest alloc] init] autorelease];
+//    request.minPlayers = 2;
+//    request.maxPlayers = 2;
+//    
+//    GKMatchmakerViewController *mmvc = [[[GKMatchmakerViewController alloc] initWithMatchRequest:request] autorelease];
+//    mmvc.matchmakerDelegate = self;
+//    
+//    [self presentModalViewController:mmvc animated:YES];
+}
+
 //View Methods
 #pragma mark View Methods
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -251,8 +296,18 @@
 }
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+    [self flush:multiplayerButton];
+    [self flush:firstPlayerImageView];
+    [self flush:COMImageView];
+    [self flush:buttonThrow];
+    [self flush:scoreboard];
+    [self flush:currentResult];
+    [self flush:appTitle];
+    [self flush:optionsController];
+    [self flush:newNotification];
+    [self flush:loginViewController];
+    
+    NSLog(@"view unload");
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -270,52 +325,23 @@
 }
 
 - (IBAction)showInfo:(id)sender {
-	if (iPad) {
-        optionsController = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView-iPad" bundle:nil];
-        optionsController.delegate = self;
-        
-        optionsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentModalViewController:optionsController animated:YES];
-        
-        [optionsController release];
-    }
-    else {
-        optionsController = [[FlipsideViewController alloc] initWithNibName:@"FlipsideView" bundle:nil];
-        optionsController.delegate = self;
-        
-        optionsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentModalViewController:optionsController animated:YES];
-        
-        [optionsController release];
-    }
+    optionsController = (iPad) ? [[FlipsideViewController alloc] initWithNibName:@"FlipsideView-iPad" bundle:nil] : [[FlipsideViewController alloc] initWithNibName:@"FlipsideView2" bundle:nil];
+    optionsController.delegate = self;
+    optionsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:optionsController animated:YES];
+    [optionsController release];
 }
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// Return YES for supported orientations.
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
-
+//Message Notification
+#pragma mark Message Notification
 - (MessageNotificationController *)newNotification {
     return [newNotification autorelease];
 }
 
+//Dealloc
+#pragma mark Dealloc
 - (void)dealloc {
     [super dealloc];
-    
-    [firstPlayerImageView release];
-    [COMImageView release];
-    [buttonThrow release];
-    [scoreboard release];
-    [currentResult release];    
-    [appTitle release];
-    [buttonThrow release];
-    [optionsController release];
-    [newNotification release];
-    [audioPlayer release];
-    [loginViewController release];
 }
 
 @end

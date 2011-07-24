@@ -15,11 +15,11 @@
 
 @interface FlipsideViewController : UIViewController <UIAlertViewDelegate>{
 	id <FlipsideViewControllerDelegate> delegate;
-    MainViewController *mainController;
     UISegmentedControl *segmentedControl;
     UIAlertView *myAlertView;
     UINavigationItem *navItem;
     UILabel *pointsLabel;
+    MainViewController *mainController;
 }
 
 @property (nonatomic, assign) id <FlipsideViewControllerDelegate> delegate;
@@ -29,6 +29,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *pointsLabel;
 
 - (IBAction)segmentedControlValueChanged:(UIEvent *)event;
+
 @end
 
 

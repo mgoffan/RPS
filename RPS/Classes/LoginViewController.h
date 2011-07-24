@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface LoginViewController : UIViewController {
-    IBOutlet UIImageView *loginUp;
-    IBOutlet UIImageView *loginDown;
+    UIImageView *loginUp;
+    UIImageView *loginDown;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView *loginUp;

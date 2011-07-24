@@ -8,8 +8,7 @@
 
 #import "FlipsideViewController.h"
 
-#import <AVFoundation/AVFoundation.h>
-#import <AudioToolbox/AudioToolbox.h>
+#import <GameKit/GameKit.h>
 
 #import "MessageNotificationController.h"
 #import "LoginViewController.h"
@@ -32,14 +31,15 @@
 @class MessageNotificationController;
 @class LoginViewController;
 
-@interface MainViewController : UIViewController <FlipsideViewControllerDelegate> {
-	IBOutlet UIImageView            *firstPlayerImageView;
-	IBOutlet UIImageView            *COMImageView;
-	IBOutlet UISegmentedControl     *segmentControl;
-    IBOutlet UILabel                *scoreboard;
-    IBOutlet UILabel                *currentResult;
-    IBOutlet UILabel                *appTitle;
-    IBOutlet UIButton               *buttonThrow;
+@interface MainViewController : UIViewController <FlipsideViewControllerDelegate, GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate> {
+    UIImageView            *firstPlayerImageView;
+    UIImageView            *COMImageView;
+    UISegmentedControl     *segmentControl;
+    UILabel                *scoreboard;
+    UILabel                *currentResult;
+    UILabel                *appTitle;
+    UIButton               *buttonThrow;
+    UIButton               *multiplayerButton;
     
 	FlipsideViewController          *optionsController;
     MessageNotificationController   *newNotification;
@@ -51,7 +51,13 @@
     BOOL                            gameIsReset;
     BOOL                            userDidWin;
     
-    AVAudioPlayer                   *audioPlayer;
+    GKSession		*gameSession;
+	int				gameUniqueID;
+	int				gamePacketNumber;
+	NSString		*gamePeerId;
+	NSDate			*lastHeartbeatDate;
+	
+	UIAlertView		*connectionAlert;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView          *firstPlayerImageView;
@@ -61,21 +67,19 @@
 @property (nonatomic, retain) IBOutlet UILabel              *appTitle;
 @property (nonatomic, retain) IBOutlet UILabel              *currentResult;
 @property (nonatomic, retain) IBOutlet UIButton             *buttonThrow;
+@property (nonatomic, retain) IBOutlet UIButton             *multiplayerButton;
 
 @property (nonatomic, retain) FlipsideViewController        *optionsController;
 @property (nonatomic, retain, getter = newNotification) MessageNotificationController *newNotification;
 
-@property (nonatomic, retain) AVAudioPlayer *audioPlayer;
-
 - (IBAction)showInfo:(id)sender;
 - (IBAction)play:(id)sender;
 - (void)share;
+- (IBAction)hostMatch:(id)sender;
 
 - (void)setupUserInterface;
 - (void)setupNotifications;
-- (void)setupGameSound;
 - (void)setupGameLogic;
 - (void)setupLogin;
-
 
 @end

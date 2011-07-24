@@ -14,18 +14,6 @@
 
 @synthesize delegate, segmentedControl, mainController, navItem, pointsLabel;
 
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
-    myAlertView = [[UIAlertView alloc] initWithTitle:@"RPS" message:@"Points cannot be changed during the game" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(done)];
-    self.navItem.leftBarButtonItem = backItem;
-    self.navItem.title             = interfaceSettings;
-    self.pointsLabel.text          = interfaceReach;
-    [backItem release];
-}
-
 - (void)viewWillAppear:(BOOL)animated {
     segmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"indexPoints"];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"gameIsReset"]) segmentedControl.enabled = YES;
@@ -33,6 +21,7 @@
         segmentedControl.enabled = NO;
         [myAlertView show];
     }
+    
     [super viewWillAppear:animated];
 }
 
@@ -40,7 +29,7 @@
     [self.delegate flipsideViewControllerDidFinish:self];
 }
 
-- (void)done {
+- (void)flipSS {
 	[self.delegate flipsideViewControllerDidFinish:self];
 }
 
@@ -64,10 +53,31 @@
 	// Release any cached data, images, etc that aren't in use.
 }
 
+- (void)flush:(id)anObject {
+    [anObject release];
+    anObject = nil;
+}
 
 - (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
+    [self flush:mainController];
+    [self flush:segmentedControl];
+    [self flush:navItem];
+    [self flush:pointsLabel];
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    
+    self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
+    myAlertView = [[UIAlertView alloc] initWithTitle:gameLocalization message:notificationPointChange delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(flipSS)];
+    self.navItem.leftBarButtonItem = backItem;
+    [backItem release];
+    
+    MainViewController *aMaincontroller = [[MainViewController alloc] init];
+    mainController = aMaincontroller;
+    [aMaincontroller release];
 }
 
 
@@ -82,9 +92,6 @@
 
 - (void)dealloc {
     [super dealloc];
-    
-    [mainController release];
-    [segmentedControl release];
 }
 
 

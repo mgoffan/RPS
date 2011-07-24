@@ -7,17 +7,11 @@
 //
 
 #import "MenuViewController.h"
+#import "MainViewController.h"
 
 @implementation MenuViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@synthesize mainViewController;
 
 - (void)didReceiveMemoryWarning
 {
@@ -57,4 +51,18 @@
 	return YES;
 }
 
+- (IBAction)goSinglePlayer:(id)sender {
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationDuration:1.5];
+    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:NO];
+    [self.view removeFromSuperview];
+    
+    [UIView commitAnimations];
+}
+
+- (IBAction)goMultiplayer:(id)sender {
+}
+
+- (IBAction)goSettings:(id)sender {
+}
 @end

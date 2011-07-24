@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MenuViewController : UIViewController
+@class MainViewController;
+
+@interface MenuViewController : UIViewController {
+    MainViewController *mainViewController;
+}
+
+@property (nonatomic, retain) MainViewController *mainViewController;
+
+- (IBAction)goSinglePlayer:(id)sender;
+- (IBAction)goMultiplayer:(id)sender;
+- (IBAction)goSettings:(id)sender;
 
 @end

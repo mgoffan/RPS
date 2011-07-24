@@ -16,6 +16,7 @@
 		5B1B2312138D8CED00118DD1 /* Background_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1B2311138D8CED00118DD1 /* Background_iPad.png */; };
 		5B1B2317138D946500118DD1 /* Default-Portrait~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1B2315138D946500118DD1 /* Default-Portrait~iPad.png */; };
 		5B1B2318138D946500118DD1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B1B2316138D946500118DD1 /* Default.png */; };
+		5B1B382513DBCB85000F4AB0 /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B1B22FF138D8B6B00118DD1 /* MainView.xib */; };
 		5B204EFF13C0183200E9E7E0 /* applause.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B204EFD13C0183200E9E7E0 /* applause.mp3 */; };
 		5B204F0013C0183200E9E7E0 /* booing.wav in Resources */ = {isa = PBXBuildFile; fileRef = 5B204EFE13C0183200E9E7E0 /* booing.wav */; };
 		5B204F0413C01B5C00E9E7E0 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B204F0213C01B3500E9E7E0 /* AudioToolbox.framework */; };
@@ -146,6 +147,7 @@
 		5B1B2311138D8CED00118DD1 /* Background_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Background_iPad.png; path = Images/Background_iPad.png; sourceTree = "<group>"; };
 		5B1B2315138D946500118DD1 /* Default-Portrait~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~iPad.png"; path = "Images/Default-Portrait~iPad.png"; sourceTree = "<group>"; };
 		5B1B2316138D946500118DD1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Images/Default.png; sourceTree = "<group>"; };
+		5B1B382413DBCB85000F4AB0 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/MenuView.xib; sourceTree = "<group>"; };
 		5B204EFD13C0183200E9E7E0 /* applause.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = applause.mp3; path = Music/applause.mp3; sourceTree = "<group>"; };
 		5B204EFE13C0183200E9E7E0 /* booing.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = booing.wav; path = Music/booing.wav; sourceTree = "<group>"; };
 		5B204F0213C01B3500E9E7E0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -403,6 +405,7 @@
 				5B62A3AA13DBBAB7007B13C3 /* Login */,
 				5B62A3B313DBBAF6007B13C3 /* Init Menu */,
 				5B62A3B113DBBACA007B13C3 /* Single Player */,
+				5B1B382B13DBD12B000F4AB0 /* Multiplayer */,
 				5B62A3B213DBBAD1007B13C3 /* Settings */,
 				5B4EDBBD13BFA6E40073F054 /* Notification */,
 			);
@@ -438,6 +441,13 @@
 				5B204EFE13C0183200E9E7E0 /* booing.wav */,
 			);
 			name = Music;
+			sourceTree = "<group>";
+		};
+		5B1B382B13DBD12B000F4AB0 /* Multiplayer */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Multiplayer;
 			sourceTree = "<group>";
 		};
 		5B2C718A13C0480200410B5C /* ShareKit */ = {
@@ -1067,6 +1077,7 @@
 				5B3785A713DBC8730082D1FD /* MainWindow-iPad.xib in Resources */,
 				5B3785A813DBC8730082D1FD /* LoginViewController-iPad.xib in Resources */,
 				5B3785B013DBCAD20082D1FD /* MenuView.xib in Resources */,
+				5B1B382513DBCB85000F4AB0 /* MainView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1208,6 +1219,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5B3785AF13DBCAD20082D1FD /* en */,
+				5B1B382413DBCB85000F4AB0 /* es */,
 			);
 			name = MenuView.xib;
 			sourceTree = "<group>";

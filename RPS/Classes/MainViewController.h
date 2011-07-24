@@ -7,17 +7,32 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <QuartzCore/QuartzCore.h>
 
-@class MainViewController;
+#import "LoginViewController.h"
 
-@interface MenuViewController : UIViewController {
-    MainViewController *mainViewController;
+@class SinglePlayerViewController;
+@class SettingsViewController;
+@class MultiplayerViewController;
+
+@class LoginViewController;
+
+@interface MainViewController : UIViewController {
+    SinglePlayerViewController *sPlayerViewController;
+    LoginViewController        *loginController;
+    SettingsViewController     *settingsController;
+    MultiplayerViewController  *multiplayerController;
 }
 
-@property (nonatomic, retain) MainViewController *mainViewController;
+@property (nonatomic, retain) SinglePlayerViewController *sPlayerViewController;
+@property (nonatomic, retain) LoginViewController        *loginController;
+@property (nonatomic, retain) SettingsViewController     *settingsController;
+@property (nonatomic, retain) MultiplayerViewController  *multiplayerController;
 
 - (IBAction)goSinglePlayer:(id)sender;
 - (IBAction)goMultiplayer:(id)sender;
 - (IBAction)goSettings:(id)sender;
+
+- (void)setupLogin;
 
 @end

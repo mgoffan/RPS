@@ -6,13 +6,14 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "FlipsideViewController.h"
+#import "SettingsViewController.h"
 #import "MainViewController.h"
+#import "SinglePlayerViewController.h"
 
 
-@implementation FlipsideViewController
+@implementation SettingsViewController
 
-@synthesize delegate, segmentedControl, mainController, navItem, pointsLabel;
+@synthesize segmentedControl, mainController, navItem, pointsLabel;
 
 - (void)viewWillAppear:(BOOL)animated {
     segmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"indexPoints"];
@@ -23,14 +24,6 @@
     }
     
     [super viewWillAppear:animated];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    [self.delegate flipsideViewControllerDidFinish:self];
-}
-
-- (void)flipSS {
-	[self.delegate flipsideViewControllerDidFinish:self];
 }
 
 - (IBAction)segmentedControlValueChanged:(UIEvent *)event {
@@ -75,7 +68,7 @@
     self.navItem.leftBarButtonItem = backItem;
     [backItem release];
     
-    MainViewController *aMaincontroller = [[MainViewController alloc] init];
+    SinglePlayerViewController *aMaincontroller = [[SinglePlayerViewController alloc] init];
     mainController = aMaincontroller;
     [aMaincontroller release];
 }

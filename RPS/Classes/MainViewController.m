@@ -6,12 +6,52 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "MenuViewController.h"
 #import "MainViewController.h"
+#import "SinglePlayerViewController.h"
+#import "SettingsViewController.h"
+#import "MultiplayerViewController.h"
 
-@implementation MenuViewController
+@implementation MainViewController
 
-@synthesize mainViewController;
+@synthesize sPlayerViewController;
+@synthesize settingsController;
+@synthesize multiplayerController;
+@synthesize loginController;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    NSLog(@"aa");
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+    }
+    return self;
+}
+
+- (void)flush:(id)anObject {
+    [anObject release];
+    anObject = nil;
+}
+
+- (void)animationDidStop:(NSString *)animID finished:(BOOL)didFinish context:(void *)context {
+    [self flush:loginController];
+}
+
+- (void)setupLogin {
+    loginController = (iPad) ? [[LoginViewController alloc] initWithNibName:@"LoginViewController-iPad" bundle:[NSBundle mainBundle]] : [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+    [self.view addSubview:loginController.view];
+    
+    [UIView beginAnimations:nil context:nil];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDelay:1.0];
+    [UIView setAnimationDuration:1.5];
+    
+    loginController.loginUp.frame = CGRectMake(0, -loginController.loginUp.frame.size.width, loginController.loginUp.frame.size.width, loginController.loginUp.frame.size.height);
+    loginController.loginDown.frame = CGRectMake(0, self.view.frame.size.height + loginController.loginDown.frame.size.height, loginController.loginDown.frame.size.width, loginController.loginDown.frame.size.height);
+    
+    loginController.view.alpha = 0.0;
+    
+    [UIView commitAnimations];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -30,13 +70,14 @@
 }
 */
 
-/*
+
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSLog(@"aa");
 }
-*/
+
 
 - (void)viewDidUnload
 {
@@ -52,12 +93,29 @@
 }
 
 - (IBAction)goSinglePlayer:(id)sender {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.5];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:NO];
-    [self.view removeFromSuperview];
+    sPlayerViewController = [[SinglePlayerViewController alloc] initWithNibName:@"SinglePlayerView" bundle:nil];
     
-    [UIView commitAnimations];
+    UIView *currentView = self.view;
+    UIView *theWindow = [currentView superview];
+    UIView *newView = sPlayerViewController.view;
+    newView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 + 20);
+    
+    [currentView removeFromSuperview];
+    [theWindow addSubview:newView];
+    
+    // set up an animation for the transition between the views
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:0.5];
+    [animation setType:kCATransitionPush];
+    [animation setSubtype:kCATransitionFromRight];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
+    [[theWindow layer] addAnimation:animation forKey:@"SwitchToNextView"];
+    
+    [sPlayerViewController setupGameLogic];
+    //[sPlayerViewController setupLogin];
+    [sPlayerViewController setupNotifications];
+    [sPlayerViewController setupUserInterface];
 }
 
 - (IBAction)goMultiplayer:(id)sender {

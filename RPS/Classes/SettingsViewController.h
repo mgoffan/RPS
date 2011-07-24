@@ -9,12 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "LocalizedStrings.h"
 
-@protocol FlipsideViewControllerDelegate;
-
 @class MainViewController;
 
-@interface FlipsideViewController : UIViewController <UIAlertViewDelegate>{
-	id <FlipsideViewControllerDelegate> delegate;
+@interface SettingsViewController : UIViewController <UIAlertViewDelegate> {
     UISegmentedControl *segmentedControl;
     UIAlertView *myAlertView;
     UINavigationItem *navItem;
@@ -22,7 +19,6 @@
     MainViewController *mainController;
 }
 
-@property (nonatomic, assign) id <FlipsideViewControllerDelegate> delegate;
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, retain) MainViewController *mainController;
 @property (nonatomic, retain) IBOutlet UINavigationItem *navItem;
@@ -31,9 +27,3 @@
 - (IBAction)segmentedControlValueChanged:(UIEvent *)event;
 
 @end
-
-
-@protocol FlipsideViewControllerDelegate
-- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller;
-@end
-

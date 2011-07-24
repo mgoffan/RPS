@@ -6,23 +6,20 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "MainViewController.h"
-#import "FlipsideViewController.h"
+#import "SinglePlayerViewController.h"
+#import "SettingsViewController.h"
 #import "MessageNotificationController.h"
 #import "LoginViewController.h"
+#import "MainViewController.h"
 
 
-@implementation MainViewController
+@implementation SinglePlayerViewController
 
 @synthesize firstPlayerImageView;
 @synthesize COMImageView;
 @synthesize segmentControl;
-@synthesize optionsController;
 @synthesize scoreboard;
 @synthesize currentResult;
-@synthesize buttonThrow ;
-@synthesize multiplayerButton;
-@synthesize appTitle;
 @synthesize newNotification;
 
 - (void)flush:(id)anObject {
@@ -49,26 +46,7 @@
     [self.view addSubview:newNotification.view];
 }
 
-- (void)animationDidStop:(NSString *)animID finished:(BOOL)didFinish context:(void *)context {
-    [self flush:loginViewController];
-}
 
-- (void)setupLogin {
-    loginViewController = (iPad) ? [[LoginViewController alloc] initWithNibName:@"LoginViewController-iPad" bundle:[NSBundle mainBundle]] : [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
-    [self.view addSubview:loginViewController.view];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDuration:1.5];
-    
-    loginViewController.loginUp.frame = CGRectMake(0, -loginViewController.loginUp.frame.size.width, loginViewController.loginUp.frame.size.width, loginViewController.loginUp.frame.size.height);
-    loginViewController.loginDown.frame = CGRectMake(0, self.view.frame.size.height + loginViewController.loginDown.frame.size.height, loginViewController.loginDown.frame.size.width, loginViewController.loginDown.frame.size.height);
-    
-    loginViewController.view.alpha = 0.0;
-    
-    [UIView commitAnimations];
-}
 
 - (void)setupUserInterface {
     //Background
@@ -258,7 +236,7 @@
     gameSession = session;
 }
 
-- (IBAction)hostMatch:(id)sender {
+- (void)hostMatch:(id)sender {
     GKPeerPickerController *peerPickerController = [[[GKPeerPickerController alloc] init] autorelease];
     [peerPickerController show];
     
@@ -296,16 +274,11 @@
 }
 
 - (void)viewDidUnload {
-    [self flush:multiplayerButton];
     [self flush:firstPlayerImageView];
     [self flush:COMImageView];
-    [self flush:buttonThrow];
     [self flush:scoreboard];
     [self flush:currentResult];
-    [self flush:appTitle];
-    [self flush:optionsController];
     [self flush:newNotification];
-    [self flush:loginViewController];
     
     NSLog(@"view unload");
 }
@@ -314,23 +287,21 @@
 	[super viewDidAppear:animated];
     
 	[self becomeFirstResponder];
+    
+    NSLog(@"view appeared");
 }
 
 - (BOOL)canBecomeFirstResponder {
     return YES;
 }
-
-- (void)flipsideViewControllerDidFinish:(FlipsideViewController *)controller {
-	[self dismissModalViewControllerAnimated:YES];
-}
-
-- (IBAction)showInfo:(id)sender {
-    optionsController = (iPad) ? [[FlipsideViewController alloc] initWithNibName:@"FlipsideView-iPad" bundle:nil] : [[FlipsideViewController alloc] initWithNibName:@"FlipsideView2" bundle:nil];
-    optionsController.delegate = self;
-    optionsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:optionsController animated:YES];
-    [optionsController release];
-}
+//
+//- (IBAction)showInfo:(id)sender {
+//    optionsController = (iPad) ? [[FlipsideViewController alloc] initWithNibName:@"FlipsideView-iPad" bundle:nil] : [[FlipsideViewController alloc] initWithNibName:@"FlipsideView2" bundle:nil];
+//    optionsController.delegate = self;
+//    optionsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//    [self presentModalViewController:optionsController animated:YES];
+//    [optionsController release];
+//}
 
 //Message Notification
 #pragma mark Message Notification

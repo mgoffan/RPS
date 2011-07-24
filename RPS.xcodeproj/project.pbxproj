@@ -387,11 +387,11 @@
 			children = (
 				5B1B22FF138D8B6B00118DD1 /* MainView.xib */,
 				5B3785AE13DBCAD20082D1FD /* SinglePlayerView.xib */,
+				5B0586CC13DC81D4007B3CC5 /* MultiplayerView.xib */,
 				5B214A1C13CBC63100017AF9 /* SettingsView.xib */,
 				5B4EDBCB13BFA8F70073F054 /* Notification.xib */,
 				5BD909CD13C7B171007A0693 /* LoginViewController.xib */,
 				5BB06DA31378D8C300860034 /* MainWindow.xib */,
-				5B0586CC13DC81D4007B3CC5 /* MultiplayerView.xib */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";

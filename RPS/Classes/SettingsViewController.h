@@ -15,14 +15,12 @@
     UISegmentedControl *segmentedControl;
     UIAlertView *myAlertView;
     UINavigationItem *navItem;
-    UILabel *pointsLabel;
     MainViewController *mainController;
 }
 
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
-@property (nonatomic, retain) MainViewController *mainController;
+@property (nonatomic, retain) MainViewController  *mainController;
 @property (nonatomic, retain) IBOutlet UINavigationItem *navItem;
-@property (nonatomic, retain) IBOutlet UILabel *pointsLabel;
 
 - (IBAction)segmentedControlValueChanged:(UIEvent *)event;
 

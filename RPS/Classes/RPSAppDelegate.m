@@ -24,8 +24,11 @@
     // Override point for customization after application launch.
     
     // Add the main view controller's view to the window and display.
-    [window addSubview:mainViewController.view];
+    mainViewController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
+    UIView *newView = self.mainViewController.view;
+    [window addSubview:newView];
     [window makeKeyAndVisible];
+    [mainViewController release];
     
     [mainViewController setupLogin];
 //    [mainViewController setupGameLogic];

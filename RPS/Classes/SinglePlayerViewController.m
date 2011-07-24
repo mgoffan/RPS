@@ -21,6 +21,7 @@
 @synthesize scoreboard;
 @synthesize currentResult;
 @synthesize newNotification;
+@synthesize mainController;
 
 - (void)flush:(id)anObject {
     [anObject release];
@@ -181,6 +182,28 @@
     }
 }
 
+- (IBAction)goBack:(id)sender {
+    mainController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
+    
+    UIView *currentView = self.view;
+    UIView *theWindow = [currentView superview];
+    UIView *newView = mainController.view;
+    newView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 + 20);
+    
+    [currentView removeFromSuperview];
+    [theWindow addSubview:newView];
+    
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:0.5];
+    [animation setType:kCATransitionPush];
+    [animation setSubtype:kCATransitionFromLeft];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
+    [[theWindow layer] addAnimation:animation forKey:@"SwitchBackToView"];
+    
+    [mainController release];
+}
+
 - (void)share {
     if (userDidWin) {
         [SHKFacebook shareText:[NSString stringWithFormat:shareWon, [[NSUserDefaults standardUserDefaults]
@@ -194,63 +217,6 @@
 	if (motion == UIEventSubtypeMotionShake) {
         [self play:nil];
 	}
-}
-
-//GameKit Methods
-#pragma mark GameKit Methods
-
-- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
-    [self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
-}
-
-- (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
-    
-}
-
-- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID {
-    [gameSession acceptConnectionFromPeer:peerID error:nil];
-}
-
-- (void)session:(GKSession *)session didFailWithError:(NSError *)error {
-    
-}
-
-- (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
-    
-}
-
-- (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker {
-    [picker dismiss];
-}
-
-- (GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type {
-    [picker dismiss];
-    return gameSession;
-}
-
-- (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session {
-    [picker dismiss];
-    gameSession = session;
-}
-
-- (void)hostMatch:(id)sender {
-    GKPeerPickerController *peerPickerController = [[[GKPeerPickerController alloc] init] autorelease];
-    [peerPickerController show];
-    
-    [gameSession initWithSessionID:nil displayName:nil sessionMode:GKSessionModePeer];
-    gameSession.available = YES;
-    gameSession.delegate  = self;
-//    GKMatchRequest *request = [[[GKMatchRequest alloc] init] autorelease];
-//    request.minPlayers = 2;
-//    request.maxPlayers = 2;
-//    
-//    GKMatchmakerViewController *mmvc = [[[GKMatchmakerViewController alloc] initWithMatchRequest:request] autorelease];
-//    mmvc.matchmakerDelegate = self;
-//    
-//    [self presentModalViewController:mmvc animated:YES];
 }
 
 //View Methods
@@ -294,14 +260,6 @@
 - (BOOL)canBecomeFirstResponder {
     return YES;
 }
-//
-//- (IBAction)showInfo:(id)sender {
-//    optionsController = (iPad) ? [[FlipsideViewController alloc] initWithNibName:@"FlipsideView-iPad" bundle:nil] : [[FlipsideViewController alloc] initWithNibName:@"FlipsideView2" bundle:nil];
-//    optionsController.delegate = self;
-//    optionsController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//    [self presentModalViewController:optionsController animated:YES];
-//    [optionsController release];
-//}
 
 //Message Notification
 #pragma mark Message Notification

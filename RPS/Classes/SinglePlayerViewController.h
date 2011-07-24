@@ -6,12 +6,7 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "SettingsViewController.h"
-#import "MainViewController.h"
-
 #import <GameKit/GameKit.h>
-
-#import "MessageNotificationController.h"
 
 #import "SHK.h"
 #import "SHKFacebook.h"
@@ -28,12 +23,10 @@
 #define NOTIFICATION_WIDTH      newNotification.view.frame.size.width
 #define NOTIFICATION_HEIGHT     newNotification.view.frame.size.height
 
-@protocol SinglePlayerViewControllerDelegate;
-
 @class MessageNotificationController;
 @class MainViewController;
 
-@interface SinglePlayerViewController : UIViewController <GKPeerPickerControllerDelegate, GKSessionDelegate, GKMatchmakerViewControllerDelegate> {
+@interface SinglePlayerViewController : UIViewController {
     
     UIImageView            *firstPlayerImageView;
     UIImageView            *COMImageView;
@@ -42,6 +35,7 @@
     UILabel                *currentResult;
     
     MessageNotificationController   *newNotification;
+    MainViewController              *mainController;
     
     NSInteger                       playerPoints;
     NSInteger                       iDevicePoints;
@@ -58,9 +52,11 @@
 @property (nonatomic, retain) IBOutlet UILabel              *scoreboard;
 @property (nonatomic, retain) IBOutlet UILabel              *currentResult;
 
+@property (nonatomic, retain) MainViewController *mainController;
 @property (nonatomic, retain, getter = newNotification) MessageNotificationController *newNotification;
 
 - (IBAction)play:(id)sender;
+- (IBAction)goBack:(id)sender;
 - (void)share;
 
 - (void)setupUserInterface;

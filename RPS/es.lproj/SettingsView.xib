@@ -209,14 +209,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">pointsLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="190406465"/>
-					</object>
-					<int key="connectionID">14</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">segmentedControl</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="112451523"/>
@@ -375,13 +367,11 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>navItem</string>
-							<string>pointsLabel</string>
 							<string>segmentedControl</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UINavigationItem</string>
-							<string>UILabel</string>
 							<string>UISegmentedControl</string>
 						</object>
 					</object>
@@ -390,7 +380,6 @@
 						<object class="NSArray" key="dict.sortedKeys">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>navItem</string>
-							<string>pointsLabel</string>
 							<string>segmentedControl</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -398,10 +387,6 @@
 							<object class="IBToOneOutletInfo">
 								<string key="name">navItem</string>
 								<string key="candidateClassName">UINavigationItem</string>
-							</object>
-							<object class="IBToOneOutletInfo">
-								<string key="name">pointsLabel</string>
-								<string key="candidateClassName">UILabel</string>
 							</object>
 							<object class="IBToOneOutletInfo">
 								<string key="name">segmentedControl</string>

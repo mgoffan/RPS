@@ -8,8 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-
-#import "LoginViewController.h"
+#import <GameKit/GameKit.h>
 
 @class SinglePlayerViewController;
 @class SettingsViewController;
@@ -17,11 +16,13 @@
 
 @class LoginViewController;
 
-@interface MainViewController : UIViewController {
+@interface MainViewController : UIViewController <GKSessionDelegate, GKPeerPickerControllerDelegate> {
     SinglePlayerViewController *sPlayerViewController;
     LoginViewController        *loginController;
     SettingsViewController     *settingsController;
     MultiplayerViewController  *multiplayerController;
+    
+    GKSession *gameSession;
 }
 
 @property (nonatomic, retain) SinglePlayerViewController *sPlayerViewController;

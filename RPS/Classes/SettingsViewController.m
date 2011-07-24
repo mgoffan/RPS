@@ -8,12 +8,11 @@
 
 #import "SettingsViewController.h"
 #import "MainViewController.h"
-#import "SinglePlayerViewController.h"
 
 
 @implementation SettingsViewController
 
-@synthesize segmentedControl, mainController, navItem, pointsLabel;
+@synthesize segmentedControl, mainController, navItem;
 
 - (void)viewWillAppear:(BOOL)animated {
     segmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"indexPoints"];
@@ -55,7 +54,28 @@
     [self flush:mainController];
     [self flush:segmentedControl];
     [self flush:navItem];
-    [self flush:pointsLabel];
+}
+
+- (void)goBack {
+    mainController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
+    
+    UIView *currentView = self.view;
+    UIView *theWindow = [currentView superview];
+    UIView *newView = mainController.view;
+    newView.center = CGPointMake(self.view.frame.size.width / 2 + 20, self.view.frame.size.height / 2 + 40);
+    
+    [currentView removeFromSuperview];
+    [theWindow addSubview:newView];
+    
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:0.5];
+    [animation setType:kCATransitionPush];
+    [animation setSubtype:kCATransitionFromRight];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
+    [[theWindow layer] addAnimation:animation forKey:@"SwitchBack"];
+    
+    [mainController release];
 }
 
 - (void)viewDidLoad {
@@ -64,13 +84,9 @@
     self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
     myAlertView = [[UIAlertView alloc] initWithTitle:gameLocalization message:notificationPointChange delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(flipSS)];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(goBack)];
     self.navItem.leftBarButtonItem = backItem;
     [backItem release];
-    
-    SinglePlayerViewController *aMaincontroller = [[SinglePlayerViewController alloc] init];
-    mainController = aMaincontroller;
-    [aMaincontroller release];
 }
 
 

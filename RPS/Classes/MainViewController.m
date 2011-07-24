@@ -10,6 +10,7 @@
 #import "SinglePlayerViewController.h"
 #import "SettingsViewController.h"
 #import "MultiplayerViewController.h"
+#import "LoginViewController.h"
 
 @implementation MainViewController
 
@@ -86,12 +87,6 @@
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    // Return YES for supported orientations
-	return YES;
-}
-
 - (IBAction)goSinglePlayer:(id)sender {
     sPlayerViewController = [[SinglePlayerViewController alloc] initWithNibName:@"SinglePlayerView" bundle:nil];
     
@@ -103,24 +98,97 @@
     [currentView removeFromSuperview];
     [theWindow addSubview:newView];
     
-    // set up an animation for the transition between the views
     CATransition *animation = [CATransition animation];
     [animation setDuration:0.5];
     [animation setType:kCATransitionPush];
     [animation setSubtype:kCATransitionFromRight];
     [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
     
-    [[theWindow layer] addAnimation:animation forKey:@"SwitchToNextView"];
+    [[theWindow layer] addAnimation:animation forKey:@"SwitchToSinglePlayer"];
     
     [sPlayerViewController setupGameLogic];
-    //[sPlayerViewController setupLogin];
     [sPlayerViewController setupNotifications];
     [sPlayerViewController setupUserInterface];
+    
+    [sPlayerViewController release];
+}
+
+//GameKit Methods
+#pragma mark GameKit Methods
+
+- (void)matchmakerViewControllerWasCancelled:(GKMatchmakerViewController *)viewController {
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)matchmakerViewController:(GKMatchmakerViewController *)viewController didFailWithError:(NSError *)error {
+}
+
+- (void)session:(GKSession *)session peer:(NSString *)peerID didChangeState:(GKPeerConnectionState)state {
+    
+}
+
+- (void)session:(GKSession *)session didReceiveConnectionRequestFromPeer:(NSString *)peerID {
+    [gameSession acceptConnectionFromPeer:peerID error:nil];
+}
+
+- (void)session:(GKSession *)session didFailWithError:(NSError *)error {
+    
+}
+
+- (void)session:(GKSession *)session connectionWithPeerFailed:(NSString *)peerID withError:(NSError *)error {
+    
+}
+
+- (void)peerPickerControllerDidCancel:(GKPeerPickerController *)picker {
+    [picker dismiss];
+}
+
+- (GKSession *)peerPickerController:(GKPeerPickerController *)picker sessionForConnectionType:(GKPeerPickerConnectionType)type {
+    [picker dismiss];
+    return gameSession;
+}
+
+- (void)peerPickerController:(GKPeerPickerController *)picker didConnectPeer:(NSString *)peerID toSession:(GKSession *)session {
+    [picker dismiss];
+    gameSession = session;
 }
 
 - (IBAction)goMultiplayer:(id)sender {
+    GKPeerPickerController *peerPickerController = [[[GKPeerPickerController alloc] init] autorelease];
+    [peerPickerController show];
+    
+    [gameSession initWithSessionID:nil displayName:nil sessionMode:GKSessionModePeer];
+    gameSession.available = YES;
+    gameSession.delegate  = self;
+    //    GKMatchRequest *request = [[[GKMatchRequest alloc] init] autorelease];
+    //    request.minPlayers = 2;
+    //    request.maxPlayers = 2;
+    //    
+    //    GKMatchmakerViewController *mmvc = [[[GKMatchmakerViewController alloc] initWithMatchRequest:request] autorelease];
+    //    mmvc.matchmakerDelegate = self;
+    //    
+    //    [self presentModalViewController:mmvc animated:YES];
 }
 
 - (IBAction)goSettings:(id)sender {
+    settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsView" bundle:nil];
+    
+    UIView *currentView = self.view;
+    UIView *theWindow = [currentView superview];
+    UIView *newView = settingsController.view;
+    newView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 + 20);
+    
+    [currentView removeFromSuperview];
+    [theWindow addSubview:newView];
+    
+    CATransition *animation = [CATransition animation];
+    [animation setDuration:0.5];
+    [animation setType:kCATransitionPush];
+    [animation setSubtype:kCATransitionFromRight];
+    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
+    
+    [[theWindow layer] addAnimation:animation forKey:@"SwitchToSettings"];
+    
+    [settingsController release];
 }
 @end

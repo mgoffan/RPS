@@ -6,7 +6,6 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <AVFoundation/AVAudioPlayer.h>
 #import "RPSAppDelegate.h"
 #import "MainViewController.h"
 
@@ -28,10 +27,11 @@
     [window addSubview:mainViewController.view];
     [window makeKeyAndVisible];
     
-    [mainViewController setupGameLogic];
-    [mainViewController setupUserInterface];
-    [mainViewController setupNotifications];
     [mainViewController setupLogin];
+//    [mainViewController setupGameLogic];
+//    [mainViewController setupUserInterface];
+//    [mainViewController setupNotifications];
+//    [mainViewController setupLogin];
     
     return YES;
 }
@@ -59,13 +59,11 @@
      Called when the application is about to terminate.
      See also applicationDidEnterBackground:.
      */
-    mainViewController.firstPlayerImageView = nil;
-    mainViewController.COMImageView         = nil;
-    mainViewController.segmentControl       = nil;
-    mainViewController.scoreboard           = nil;
-    mainViewController.currentResult        = nil;
-    mainViewController.appTitle             = nil;
-    mainViewController.buttonThrow          = nil;
+//    mainViewController.firstPlayerImageView = nil;
+//    mainViewController.COMImageView         = nil;
+//    mainViewController.segmentControl       = nil;
+//    mainViewController.scoreboard           = nil;
+//    mainViewController.currentResult        = nil;
 }
 
 

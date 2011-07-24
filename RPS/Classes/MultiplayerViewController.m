@@ -1,17 +1,23 @@
 //
-//  MenuViewController.m
+//  MultiplayerViewController.m
 //  RPS
 //
 //  Created by Martin Goffan on 7/24/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "MenuViewController.h"
-#import "MainViewController.h"
+#import "MultiplayerViewController.h"
 
-@implementation MenuViewController
+@implementation MultiplayerViewController
 
-@synthesize mainViewController;
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -48,21 +54,7 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     // Return YES for supported orientations
-	return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (IBAction)goSinglePlayer:(id)sender {
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationDuration:1.5];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:self.view cache:NO];
-    [self.view removeFromSuperview];
-    
-    [UIView commitAnimations];
-}
-
-- (IBAction)goMultiplayer:(id)sender {
-}
-
-- (IBAction)goSettings:(id)sender {
-}
 @end

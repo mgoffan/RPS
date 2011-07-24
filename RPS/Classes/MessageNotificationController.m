@@ -7,7 +7,7 @@
 //
 
 #import "MessageNotificationController.h"
-#import "MainViewController.h"
+#import "SinglePlayerViewController.h"
 
 @implementation MessageNotificationController
 
@@ -25,7 +25,7 @@
         myMessage = [[NSString alloc] init];
         winnerLooserImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 68, 68)];
         [winnerLooserImageView setContentMode:UIViewContentModeScaleToFill];
-        MainViewController *aMainViewController = [[MainViewController alloc] init];
+        SinglePlayerViewController *aMainViewController = [[SinglePlayerViewController alloc] init];
         self.mainController = aMainViewController;
         [aMainViewController release];
     }

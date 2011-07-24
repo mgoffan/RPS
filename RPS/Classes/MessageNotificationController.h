@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "MainViewController.h"
 
-@class MainViewController;
+@class SinglePlayerViewController;
 
 @interface MessageNotificationController : UIViewController {
     IBOutlet UILabel *lMessage;
@@ -23,7 +23,7 @@
 @property (nonatomic, retain) NSString *myMessage;
 @property (nonatomic, retain) IBOutlet UIButton *shareButton;
 
-@property (nonatomic, retain) MainViewController *mainController;
+@property (nonatomic, retain) SinglePlayerViewController *mainController;
 
 - (void)image:(UIImage *)anImage;
 - (IBAction)share:(id)sender;

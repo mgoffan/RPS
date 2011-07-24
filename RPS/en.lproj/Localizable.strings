@@ -16,16 +16,5 @@
 "shareLost"     = "I lost %d - %d with RPS.";
 "shareWon"      = "I beat RPS %d - %d.";
 
-//Interface
-//"interfaceRock"      = "Rock";
-//"interfaceScissors"  = "Scissors";
-//"interfacePaper"     = "Paper";
-//"interfaceTitle"     = "Rock, Paper, Scissors";
-//"interfaceThrow"     = "Throw";
-//"interfaceShare"     = "Share";
-//"interfaceSettings"  = "Settings";
-//"interfaceReach"     = "Reachable Points";
-//"interfaceMusic"     = "Game music";
-
 //Notifications
 "notificationPointChange"   = "Points cannot be changed during the game.";

@@ -90,6 +90,12 @@
 		5B37859C13DBC5200082D1FD /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B1B22FF138D8B6B00118DD1 /* MainView.xib */; };
 		5B37859D13DBC5200082D1FD /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD909CD13C7B171007A0693 /* LoginViewController.xib */; };
 		5B37859E13DBC5200082D1FD /* FlipsideView2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B214A1C13CBC63100017AF9 /* FlipsideView2.xib */; };
+		5B3785A413DBC8730082D1FD /* Notification-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B4EDBC813BFA80D0073F054 /* Notification-iPad.xib */; };
+		5B3785A513DBC8730082D1FD /* FlipsideView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B1B2303138D8B8E00118DD1 /* FlipsideView-iPad.xib */; };
+		5B3785A613DBC8730082D1FD /* MainView-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B1B2305138D8B8E00118DD1 /* MainView-iPad.xib */; };
+		5B3785A713DBC8730082D1FD /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B1B22F1138D895600118DD1 /* MainWindow-iPad.xib */; };
+		5B3785A813DBC8730082D1FD /* LoginViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD909D413C7B6EB007A0693 /* LoginViewController-iPad.xib */; };
+		5B3785B013DBCAD20082D1FD /* MenuView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5B3785AE13DBCAD20082D1FD /* MenuView.xib */; };
 		5B46AF3813BF643400BB47C2 /* icon_114x114.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B46AF3713BF643400BB47C2 /* icon_114x114.png */; };
 		5B46AF3A13BF64DB00BB47C2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 5B46AF3913BF64DB00BB47C2 /* Default@2x.png */; };
 		5B46AF3E13BF6E0300BB47C2 /* bgsound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5B46AF3D13BF6E0300BB47C2 /* bgsound.mp3 */; };
@@ -280,6 +286,12 @@
 		5B37859713DBC5200082D1FD /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/MainView.xib; sourceTree = "<group>"; };
 		5B37859813DBC5200082D1FD /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/MainWindow.xib; sourceTree = "<group>"; };
 		5B37859913DBC5200082D1FD /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = es.lproj/Notification.xib; sourceTree = "<group>"; };
+		5B37859F13DBC8730082D1FD /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = "iPad/es.lproj/FlipsideView-iPad.xib"; sourceTree = "<group>"; };
+		5B3785A013DBC8730082D1FD /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = "iPad/es.lproj/LoginViewController-iPad.xib"; sourceTree = "<group>"; };
+		5B3785A113DBC8730082D1FD /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = "iPad/es.lproj/MainView-iPad.xib"; sourceTree = "<group>"; };
+		5B3785A213DBC8730082D1FD /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = "iPad/es.lproj/MainWindow-iPad.xib"; sourceTree = "<group>"; };
+		5B3785A313DBC8730082D1FD /* es */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = es; path = "iPad/es.lproj/Notification-iPad.xib"; sourceTree = "<group>"; };
+		5B3785AF13DBCAD20082D1FD /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MenuView.xib; sourceTree = "<group>"; };
 		5B46AF3713BF643400BB47C2 /* icon_114x114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon_114x114.png; path = Images/icon_114x114.png; sourceTree = "<group>"; };
 		5B46AF3913BF64DB00BB47C2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Images/Default@2x.png"; sourceTree = "<group>"; };
 		5B46AF3D13BF6E0300BB47C2 /* bgsound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = bgsound.mp3; path = Music/bgsound.mp3; sourceTree = "<group>"; };
@@ -352,11 +364,11 @@
 		5B1B22F0138D895400118DD1 /* iPad */ = {
 			isa = PBXGroup;
 			children = (
-				5B4EDBC813BFA80D0073F054 /* Notification-iPad.xib */,
-				5B1B2303138D8B8E00118DD1 /* FlipsideView-iPad.xib */,
 				5B1B2305138D8B8E00118DD1 /* MainView-iPad.xib */,
-				5B1B22F1138D895600118DD1 /* MainWindow-iPad.xib */,
+				5B1B2303138D8B8E00118DD1 /* FlipsideView-iPad.xib */,
+				5B4EDBC813BFA80D0073F054 /* Notification-iPad.xib */,
 				5BD909D413C7B6EB007A0693 /* LoginViewController-iPad.xib */,
+				5B1B22F1138D895600118DD1 /* MainWindow-iPad.xib */,
 			);
 			name = iPad;
 			sourceTree = "<group>";
@@ -364,11 +376,12 @@
 		5B1B22F6138D8AA800118DD1 /* iPhone */ = {
 			isa = PBXGroup;
 			children = (
-				5B4EDBCB13BFA8F70073F054 /* Notification.xib */,
-				5BB06DA31378D8C300860034 /* MainWindow.xib */,
+				5B3785AE13DBCAD20082D1FD /* MenuView.xib */,
 				5B1B22FF138D8B6B00118DD1 /* MainView.xib */,
-				5BD909CD13C7B171007A0693 /* LoginViewController.xib */,
 				5B214A1C13CBC63100017AF9 /* FlipsideView2.xib */,
+				5B4EDBCB13BFA8F70073F054 /* Notification.xib */,
+				5BD909CD13C7B171007A0693 /* LoginViewController.xib */,
+				5BB06DA31378D8C300860034 /* MainWindow.xib */,
 			);
 			name = iPhone;
 			sourceTree = "<group>";
@@ -1048,6 +1061,12 @@
 				5B37859C13DBC5200082D1FD /* MainView.xib in Resources */,
 				5B37859D13DBC5200082D1FD /* LoginViewController.xib in Resources */,
 				5B37859E13DBC5200082D1FD /* FlipsideView2.xib in Resources */,
+				5B3785A413DBC8730082D1FD /* Notification-iPad.xib in Resources */,
+				5B3785A513DBC8730082D1FD /* FlipsideView-iPad.xib in Resources */,
+				5B3785A613DBC8730082D1FD /* MainView-iPad.xib in Resources */,
+				5B3785A713DBC8730082D1FD /* MainWindow-iPad.xib in Resources */,
+				5B3785A813DBC8730082D1FD /* LoginViewController-iPad.xib in Resources */,
+				5B3785B013DBCAD20082D1FD /* MenuView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1135,6 +1154,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5B1B22F2138D895600118DD1 /* en */,
+				5B3785A213DBC8730082D1FD /* es */,
 			);
 			name = "MainWindow-iPad.xib";
 			sourceTree = "<group>";
@@ -1152,6 +1172,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5B1B2304138D8B8E00118DD1 /* en */,
+				5B37859F13DBC8730082D1FD /* es */,
 			);
 			name = "FlipsideView-iPad.xib";
 			sourceTree = "<group>";
@@ -1160,6 +1181,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5B1B2306138D8B8E00118DD1 /* en */,
+				5B3785A113DBC8730082D1FD /* es */,
 			);
 			name = "MainView-iPad.xib";
 			sourceTree = "<group>";
@@ -1182,10 +1204,19 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
+		5B3785AE13DBCAD20082D1FD /* MenuView.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5B3785AF13DBCAD20082D1FD /* en */,
+			);
+			name = MenuView.xib;
+			sourceTree = "<group>";
+		};
 		5B4EDBC813BFA80D0073F054 /* Notification-iPad.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				5B4EDBC913BFA80D0073F054 /* en */,
+				5B3785A313DBC8730082D1FD /* es */,
 			);
 			name = "Notification-iPad.xib";
 			sourceTree = "<group>";
@@ -1239,6 +1270,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				5BD909D513C7B6EB007A0693 /* en */,
+				5B3785A013DBC8730082D1FD /* es */,
 			);
 			name = "LoginViewController-iPad.xib";
 			sourceTree = "<group>";
@@ -1260,7 +1292,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
 			};
@@ -1277,7 +1309,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1297,7 +1329,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "RPS/RPS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";
@@ -1317,7 +1349,7 @@
 				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "RPS/RPS-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				USER_HEADER_SEARCH_PATHS = "";

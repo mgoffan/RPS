@@ -55,7 +55,7 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<object class="IBUINavigationItem" id="125833087">
 								<reference key="IBUINavigationBar" ref="518983621"/>
-								<string key="IBUITitle"/>
+								<string key="IBUITitle">Settings</string>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 						</object>
@@ -72,7 +72,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText"/>
+						<string key="IBUIText">Maximum Points</string>
 						<object class="NSColor" key="IBUITextColor" id="874083666">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -135,7 +135,7 @@
 					<object class="IBUITextView" id="229842161">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">274</int>
-						<string key="NSFrame">{{0, 115}, {768, 888}}</string>
+						<string key="NSFrame">{{20, 137}, {728, 847}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView"/>

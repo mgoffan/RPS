@@ -18,16 +18,6 @@
 #define resultLost              NSLocalizedString(@"resultLost",nil)
 #define resultWon               NSLocalizedString(@"resultWon",nil)
 
-//#define interfaceTitle          NSLocalizedString(@"interfaceTitle",nil)
-//#define interfaceRock           NSLocalizedString(@"interfaceRock",nil)
-//#define interfacePaper          NSLocalizedString(@"interfacePaper",nil)
-//#define interfaceScissors       NSLocalizedString(@"interfaceScissors",nil)
-//#define interfaceThrow          NSLocalizedString(@"interfaceThrow",nil)
-//#define interfaceShare          NSLocalizedString(@"interfaceShare",nil)
-//#define interfaceSettings       NSLocalizedString(@"interfaceSettings",nil)
-//#define interfaceReach          NSLocalizedString(@"interfaceReach",nil)
-//#define interfaceMusic          NSLocalizedString(@"interfaceMusic",nil)
-
 #define shareWon                NSLocalizedString(@"shareWon",nil)
 #define shareLost               NSLocalizedString(@"shareLost",nil)
 

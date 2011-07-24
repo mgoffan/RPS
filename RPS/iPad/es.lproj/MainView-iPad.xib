@@ -54,7 +54,7 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBIPadFramework</string>
-						<string key="IBUIText">Rock, Paper, Scissors</string>
+						<string key="IBUIText">Piedra, Papel o Tijera</string>
 						<object class="NSColor" key="IBUITextColor" id="78722139">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -88,9 +88,9 @@
 						<int key="IBSelectedSegmentIndex">0</int>
 						<object class="NSArray" key="IBSegmentTitles">
 							<bool key="EncodedWithXMLCoder">YES</bool>
-							<string>Rock</string>
-							<string>Paper</string>
-							<string>Scissors</string>
+							<string>Piedra</string>
+							<string>Papel</string>
+							<string>Tijera</string>
 						</object>
 						<object class="NSMutableArray" key="IBSegmentWidths">
 							<bool key="EncodedWithXMLCoder">YES</bool>
@@ -129,7 +129,7 @@
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
 						<int key="IBUILineBreakMode">2</int>
-						<string key="IBUINormalTitle">Throw</string>
+						<string key="IBUINormalTitle">Tirar</string>
 						<reference key="IBUIHighlightedTitleColor" ref="78722139"/>
 						<object class="NSColor" key="IBUINormalTitleColor" id="620032149">
 							<int key="NSColorSpace">1</int>
@@ -229,7 +229,7 @@
 					<object class="IBUILabel" id="494085781">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{247, 382}, {256, 34}}</string>
+						<string key="NSFrame">{{256, 382}, {256, 34}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="433187877"/>
@@ -296,7 +296,7 @@
 							<int key="traits">2</int>
 							<double key="pointSize">15</double>
 						</object>
-						<object class="NSFont" key="IBUIFont" id="460865158">
+						<object class="NSFont" key="IBUIFont" id="713644979">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">15</double>
 							<int key="NSfFlags">16</int>
@@ -321,7 +321,7 @@
 							<bytes key="NSWhite">MCAwAA</bytes>
 						</object>
 						<reference key="IBUIFontDescription" ref="375750620"/>
-						<reference key="IBUIFont" ref="460865158"/>
+						<reference key="IBUIFont" ref="713644979"/>
 					</object>
 				</object>
 				<string key="NSFrame">{{0, 20}, {768, 1004}}</string>
@@ -555,6 +555,7 @@
 					<string>8.IBViewBoundsToFrameTransform</string>
 					<string>9.IBPluginDependency</string>
 					<string>9.IBViewBoundsToFrameTransform</string>
+					<string>9.IUISegmentedControlInspectorSelectedSegmentMetadataKey</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -599,6 +600,7 @@
 					<object class="NSAffineTransform">
 						<bytes key="NSTransformStruct">P4AAAL+AAABCYAAAwuAAAA</bytes>
 					</object>
+					<integer value="2"/>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="unlocalizedProperties">
@@ -613,7 +615,7 @@
 				<reference key="dict.values" ref="0"/>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">30</int>
+			<int key="maxID">29</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

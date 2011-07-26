@@ -108,9 +108,21 @@
     [self performSelector:@selector(hideNotification) withObject:nil afterDelay:5.0];
 }
 
+- (void)playerWon {
+    playerPoints++;
+    scoreboard.text     = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
+    currentResult.text  = statusWon;
+}
+
+- (void)playerLost {
+    iDevicePoints++;
+    scoreboard.text     = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
+    currentResult.text  = statusLost;
+}
+
 - (void)play:(id)sender {
-	NSInteger choice        = segmentControl.selectedSegmentIndex;
-	int rnd                 = arc4random() % 3;
+    NSInteger choice        = segmentControl.selectedSegmentIndex;
+    int rnd                 = arc4random() % 3;
     
     gameIsReset             = NO;
     [[NSUserDefaults standardUserDefaults] setBool:gameIsReset forKey:@"gameIsReset"];
@@ -121,52 +133,45 @@
     COMImageView.transform = CGAffineTransformMakeScale(-1.0, 1.0);
     
     if (playerPoints < reachablePoints || iDevicePoints < reachablePoints) {
-        if (choice == 0) {
-            if (rnd == 0) {
-                currentResult.text = statusTie;
-            } else {
-                if (rnd == 1) {
-                    iDevicePoints++;
-                    scoreboard.text     = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
-                    currentResult.text  = statusLost;
-                } else {
-                    playerPoints++;
-                    scoreboard.text     = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
-                    currentResult.text  = statusWon;
+        switch (choice) {
+            case 0:
+                switch (rnd) {
+                    case 0: currentResult.text = statusTie;
+                        break;
+                    case 1: [self playerLost];
+                        break;
+                    case 2: [self playerWon];
+                        break;
+                    default:
+                        break;
                 }
-            }
-        } else {
-            if (choice == 1) {
-                if (rnd == 0) {
-                    playerPoints++;
-                    scoreboard.text     = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
-                    currentResult.text  = statusWon;
-                } else {
-                    if (rnd == 1) {
-                        currentResult.text = statusTie;
-                    } else {
-                        iDevicePoints++;
-                        scoreboard.text     = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
-                        currentResult.text  = statusLost;
-                    }
+                break;
+            case 1:
+                switch (rnd) {
+                    case 0: [self playerWon];
+                        break;
+                    case 1: currentResult.text = statusTie;
+                        break;
+                    case 2: [self playerLost];
+                        break;
+                    default:
+                        break;
                 }
-            } else {
-                if (choice == 2) {
-                    if (rnd == 0) {
-                        iDevicePoints++;
-                        scoreboard.text     = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
-                        currentResult.text  = statusLost;
-                    } else {
-                        if (rnd == 1) {
-                            playerPoints++;
-                            scoreboard.text     = [NSString stringWithFormat:@"%d - %d", playerPoints, iDevicePoints];
-                            currentResult.text  = statusWon;
-                        } else {
-                            currentResult.text  = statusTie;
-                        }
-                    }
+                break;
+            case 2:
+                switch (rnd) {
+                    case 0: [self playerLost];
+                        break;
+                    case 1: [self playerWon];
+                        break;
+                    case 2: currentResult.text  = statusTie;
+                        break;
+                    default:
+                        break;
                 }
-            }
+                break;
+            default:
+                break;
         }
         if (playerPoints == reachablePoints || iDevicePoints == reachablePoints) {
             goto loop;

@@ -127,6 +127,9 @@
 		case SHKShareTypeFile:
 			return [self canShareFile];
 			break;
+			
+		default: 
+			return NO;
 	}
 	return NO;
 }
@@ -655,6 +658,9 @@
 		case SHKPendingShare:
 			[self share];
 			break;
+		default:
+			break;
+
 	}
 }
 

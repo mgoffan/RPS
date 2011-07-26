@@ -14,8 +14,8 @@
 // App Description
 // These values are used by any service that shows 'shared from XYZ'
 
-#define SHKMyAppName			@"My App Name"
-#define SHKMyAppURL				@"http://example.com"
+#define SHKMyAppName			@"RPS"
+#define SHKMyAppURL				@"http://www.facebook.com/mgoffan"
 
 
 
@@ -46,7 +46,7 @@
 // If SHKFacebookUseSessionProxy is enabled then SHKFacebookSecret is ignored and should be left blank
 
 #define SHKFacebookUseSessionProxy  NO 
-#define SHKFacebookKey				@"465dae916f01b992ee47e4cb7f9674f2"
+#define SHKFacebookKey				@"242507009093961"
 #define SHKFacebookSecret			@"084742043ffcec9fb24792966046c20a"
 #define SHKFacebookSessionProxyURL  @""
 

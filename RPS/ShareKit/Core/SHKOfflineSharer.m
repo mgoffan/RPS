@@ -77,12 +77,10 @@
 - (void)share
 {	
 	// create sharer
-    SHKSharer *sI = [[NSClassFromString(sharerId) alloc] init];
-	self.sharer = sI;
+	self.sharer = [[NSClassFromString(sharerId) alloc] init];
 	sharer.item = item;
 	sharer.quiet = YES;
 	sharer.shareDelegate = self;
-    [sI release];
 	
 	if (![sharer isAuthorized])		
 	{

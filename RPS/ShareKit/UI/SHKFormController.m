@@ -58,17 +58,17 @@
 	if (self = [super initWithStyle:style])
 	{
 		self.title = barTitle;
-        
-        UIBarButtonItem *aBI = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
-        UIBarButtonItem *anBI = [[UIBarButtonItem alloc] initWithTitle:rightButtonTitle style:UIBarButtonItemStyleDone target:self action:@selector(validateForm)];
 		
-		self.navigationItem.leftBarButtonItem = aBI;
-		self.navigationItem.rightBarButtonItem = anBI;
+		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+																							  target:self
+																							  action:@selector(cancel)];
+		
+		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:rightButtonTitle
+																				  style:UIBarButtonItemStyleDone
+																				 target:self
+																				 action:@selector(validateForm)];
 		
 		self.values = [NSMutableDictionary dictionaryWithCapacity:0];
-        
-        [aBI release];
-        [anBI release];
 	}
 	return self;
 }

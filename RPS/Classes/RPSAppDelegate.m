@@ -19,27 +19,6 @@
 #pragma mark -
 #pragma mark Application lifecycle
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
-    
-    // Override point for customization after application launch.
-    
-    // Add the main view controller's view to the window and display.
-    mainViewController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
-    UIView *newView = self.mainViewController.view;
-    [window addSubview:newView];
-    [window makeKeyAndVisible];
-    [mainViewController release];
-    
-    [mainViewController setupLogin];
-//    [mainViewController setupGameLogic];
-//    [mainViewController setupUserInterface];
-//    [mainViewController setupNotifications];
-//    [mainViewController setupLogin];
-    
-    return YES;
-}
-
-
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
      Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -79,6 +58,16 @@
      */
 }
 
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {    
+    
+    // Override point for customization after application launch.
+    self.mainViewController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
+    
+    [window addSubview:self.mainViewController.view];
+    [window makeKeyAndVisible];
+    
+    return YES;
+}
 
 - (void)dealloc {
     [mainViewController release];

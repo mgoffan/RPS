@@ -19,6 +19,8 @@
 @synthesize multiplayerController;
 @synthesize loginController;
 
+@synthesize view;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     NSLog(@"aa");
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,7 +39,8 @@
 }
 
 - (void)setupLogin {
-    loginController = (iPad) ? [[LoginViewController alloc] initWithNibName:@"LoginViewController-iPad" bundle:[NSBundle mainBundle]] : [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+    loginController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+    
     [self.view addSubview:loginController.view];
     
     [UIView beginAnimations:nil context:nil];

@@ -411,7 +411,7 @@
 			isa = PBXGroup;
 			children = (
 				5B62A3AA13DBBAB7007B13C3 /* Login */,
-				5B62A3B313DBBAF6007B13C3 /* Init Menu */,
+				5B62A3B313DBBAF6007B13C3 /* Main */,
 				5B62A3B113DBBACA007B13C3 /* Single Player */,
 				5B1B382B13DBD12B000F4AB0 /* Multiplayer */,
 				5B62A3B213DBBAD1007B13C3 /* Settings */,
@@ -917,13 +917,13 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
-		5B62A3B313DBBAF6007B13C3 /* Init Menu */ = {
+		5B62A3B313DBBAF6007B13C3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				5B37859213DBC4A40082D1FD /* MainViewController.h */,
 				5B37859313DBC4A40082D1FD /* MainViewController.m */,
 			);
-			name = "Init Menu";
+			name = Main;
 			sourceTree = "<group>";
 		};
 		5BB06D821378D8C200860034 = {
@@ -1352,13 +1352,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_ENTITLEMENTS = RPS/RPS.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = NO;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RPS/RPS-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "RPS/RPS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
@@ -1373,12 +1374,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = YES;
+				CODE_SIGN_ENTITLEMENTS = RPS/RPS.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "RPS/RPS-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = "RPS/RPS-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.2;

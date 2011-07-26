@@ -149,7 +149,7 @@ static SHKActivityIndicator *currentIndicator = nil;
 	[self showSpinner];	
 	
 	[centerMessageLabel removeFromSuperview];
-	centerMessageLabel = nil;
+	self.centerMessageLabel = nil;
 	
 	if ([self superview] == nil)
 		[self show];
@@ -163,7 +163,7 @@ static SHKActivityIndicator *currentIndicator = nil;
 	[self setSubMessage:m];
 	
 	[spinner removeFromSuperview];
-	spinner = nil;
+	self.spinner = nil;
 	
 	if ([self superview] == nil)
 		[self show];
@@ -229,15 +229,13 @@ static SHKActivityIndicator *currentIndicator = nil;
 {	
 	if (spinner == nil)
 	{
-        UIActivityIndicatorView *aIV = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-		self.spinner = aIV;
+		self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
 
 		spinner.frame = CGRectMake(round(self.bounds.size.width/2 - spinner.frame.size.width/2),
 								round(self.bounds.size.height/2 - spinner.frame.size.height/2),
 								spinner.frame.size.width,
 								spinner.frame.size.height);		
-		[spinner release];
-        [aIV release];
+		[spinner release];	
 	}
 	
 	[self addSubview:spinner];
@@ -264,6 +262,9 @@ static SHKActivityIndicator *currentIndicator = nil;
 	
 	if (orientation == UIDeviceOrientationPortraitUpsideDown)
 		self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, SHKdegreesToRadians(180));	
+		
+	else if (orientation == UIDeviceOrientationPortrait)
+		self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, SHKdegreesToRadians(0)); 
 	
 	else if (orientation == UIDeviceOrientationLandscapeLeft)
 		self.transform = CGAffineTransformRotate(CGAffineTransformIdentity, SHKdegreesToRadians(90));	

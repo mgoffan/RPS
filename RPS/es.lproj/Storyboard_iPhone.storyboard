@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.0" toolsVersion="1864" systemVersion="11A494a" targetRuntime="iOS.CocoaTouch" nextObjectID="18" propertyAccessControl="none" initialViewController="2">
+    <dependencies>
+        <development defaultVersion="4200" identifier="xcode"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="865"/>
+    </dependencies>
+    <scenes>
+        <scene sceneID="11">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="10" userLabel="First Responder" sceneMemberID="firstRespodner"/>
+                <viewController id="2" customClass="MainViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedMetricsInferredSentinel key="simulatedStatusBarMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedTopBarMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedBottomBarMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedOrientationMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedDestinationMetrics"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="185" y="19"/>
+        </scene>
+        <scene sceneID="13">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="12" userLabel="First Responder" sceneMemberID="firstRespodner"/>
+                <viewController id="3" customClass="SinglePlayerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedMetricsInferredSentinel key="simulatedStatusBarMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedTopBarMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedBottomBarMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedOrientationMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedDestinationMetrics"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="574" y="19"/>
+        </scene>
+        <scene sceneID="15">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="14" userLabel="First Responder" sceneMemberID="firstRespodner"/>
+                <viewController id="4" customClass="MultiplayerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedMetricsInferredSentinel key="simulatedStatusBarMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedTopBarMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedBottomBarMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedOrientationMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedDestinationMetrics"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="574" y="613"/>
+        </scene>
+        <scene sceneID="17">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="16" userLabel="First Responder" sceneMemberID="firstRespodner"/>
+                <viewController id="5" customClass="SettingsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedMetricsInferredSentinel key="simulatedStatusBarMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedTopBarMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedBottomBarMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedOrientationMetrics"/>
+                    <simulatedMetricsInferredSentinel key="simulatedDestinationMetrics"/>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="574" y="1216"/>
+        </scene>
+    </scenes>
+    <classes>
+        <class className="MainViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goMultiplayer:"/>
+                <relationship kind="action" name="goSettings:"/>
+                <relationship kind="action" name="goSinglePlayer:"/>
+            </relationships>
+        </class>
+        <class className="MultiplayerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MultiplayerViewController.h"/>
+            <relationships/>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="segmentedControlValueChanged:" candidateClass="UIEvent"/>
+                <relationship kind="outlet" name="navItem" candidateClass="UINavigationItem"/>
+                <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="SinglePlayerViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SinglePlayerViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="goBack:"/>
+                <relationship kind="action" name="play:"/>
+                <relationship kind="outlet" name="COMImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="currentResult" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="firstPlayerImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="scoreboard" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="segmentControl" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+    </classes>
+</document>

@@ -7,12 +7,11 @@
 //
 
 #import "SettingsViewController.h"
-#import "MainViewController.h"
 
 
 @implementation SettingsViewController
 
-@synthesize segmentedControl, mainController, navItem;
+@synthesize segmentedControl;
 
 - (void)viewWillAppear:(BOOL)animated {
     segmentedControl.selectedSegmentIndex = [[NSUserDefaults standardUserDefaults] integerForKey:@"indexPoints"];
@@ -28,13 +27,13 @@
 - (IBAction)segmentedControlValueChanged:(UIEvent *)event {
     [[NSUserDefaults standardUserDefaults] setInteger:segmentedControl.selectedSegmentIndex forKey:@"indexPoints"];
     if (segmentedControl.selectedSegmentIndex == 0) {
-        [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"reachablePoints"];
+        [[NSUserDefaults standardUserDefaults] setInteger:kMaxPoints1 forKey:@"maxPoints"];
     }
     else if (segmentedControl.selectedSegmentIndex == 1) {
-        [[NSUserDefaults standardUserDefaults] setInteger:3 forKey:@"reachablePoints"];
+        [[NSUserDefaults standardUserDefaults] setInteger:kMaxPoints3 forKey:@"maxPoints"];
     }
     else {
-        [[NSUserDefaults standardUserDefaults] setInteger:5 forKey:@"reachablePoints"];
+        [[NSUserDefaults standardUserDefaults] setInteger:kMaxPoints5 forKey:@"maxPoints"];
     }
 }
 
@@ -51,31 +50,7 @@
 }
 
 - (void)viewDidUnload {
-    [self flush:mainController];
     [self flush:segmentedControl];
-    [self flush:navItem];
-}
-
-- (void)goBack {
-    mainController = [[MainViewController alloc] initWithNibName:@"MainView" bundle:nil];
-    
-    UIView *currentView = self.view;
-    UIView *theWindow = [currentView superview];
-    UIView *newView = mainController.view;
-    newView.center = CGPointMake(self.view.frame.size.width / 2 + 20, self.view.frame.size.height / 2 + 40);
-    
-    [currentView removeFromSuperview];
-    [theWindow addSubview:newView];
-    
-    CATransition *animation = [CATransition animation];
-    [animation setDuration:0.5];
-    [animation setType:kCATransitionPush];
-    [animation setSubtype:kCATransitionFromRight];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    
-    [[theWindow layer] addAnimation:animation forKey:@"SwitchBack"];
-    
-    [mainController release];
 }
 
 - (void)viewDidLoad {
@@ -83,10 +58,6 @@
     
     self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
     myAlertView = [[UIAlertView alloc] initWithTitle:gameLocalization message:notificationPointChange delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(goBack)];
-    self.navItem.leftBarButtonItem = backItem;
-    [backItem release];
 }
 
 

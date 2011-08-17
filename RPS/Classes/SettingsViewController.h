@@ -8,19 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "LocalizedStrings.h"
+#import "GameData.h"
 
 @class MainViewController;
 
 @interface SettingsViewController : UIViewController <UIAlertViewDelegate> {
     UISegmentedControl *segmentedControl;
     UIAlertView *myAlertView;
-    UINavigationItem *navItem;
-    MainViewController *mainController;
 }
 
 @property (nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
-@property (nonatomic, retain) MainViewController  *mainController;
-@property (nonatomic, retain) IBOutlet UINavigationItem *navItem;
 
 - (IBAction)segmentedControlValueChanged:(UIEvent *)event;
 

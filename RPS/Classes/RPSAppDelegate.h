@@ -7,16 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GameData.h"
 
 @class MainViewController;
 
-@interface RPSAppDelegate : NSObject <UIApplicationDelegate> {
-    UIWindow *window;
-    MainViewController *mainViewController;
-}
+@interface RPSAppDelegate : UIResponder <UIApplicationDelegate>
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) IBOutlet MainViewController *mainViewController;
+@property (strong, nonatomic) UIWindow *window;
 
 @end
-

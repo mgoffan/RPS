@@ -6,13 +6,6 @@
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import <GameKit/GameKit.h>
-
-#import "SHK.h"
-#import "SHKFacebook.h"
-
-#import "LocalizedStrings.h"
-
 #define iPad                    ([UIScreen mainScreen].bounds.size.height == 1024)
 
 #define kAnimationDurationShow  2.0
@@ -20,30 +13,30 @@
 
 #define VIEW_WIDTH              self.view.bounds.size.width
 #define VIEW_HEIGHT             self.view.bounds.size.height
-#define NOTIFICATION_WIDTH      newNotification.view.frame.size.width
-#define NOTIFICATION_HEIGHT     newNotification.view.frame.size.height
+#define NOTIFICATION_WIDTH      theNotification.view.frame.size.width
+#define NOTIFICATION_HEIGHT     theNotification.view.frame.size.height
+
+#import <UIKit/UIKit.h>
 
 @class MessageNotificationController;
 @class MainViewController;
 
 @interface SinglePlayerViewController : UIViewController {
     
-    UIImageView            *firstPlayerImageView;
-    UIImageView            *COMImageView;
-    UISegmentedControl     *segmentControl;
-    UILabel                *scoreboard;
-    UILabel                *currentResult;
+    UIImageView            *_firstPlayerImageView;
+    UIImageView            *_COMImageView;
+    UISegmentedControl     *_segmentControl;
+    UILabel                *_scoreboard;
+    UILabel                *_currentResult;
     
-    MessageNotificationController   *newNotification;
+    MessageNotificationController   *theNotification;
     MainViewController              *mainController;
     
     NSInteger                       playerPoints;
     NSInteger                       iDevicePoints;
-    NSInteger                       reachablePoints;
+    NSInteger                       maxPoints;
     BOOL                            gameIsReset;
     BOOL                            userDidWin;
-    
-    GKSession		*gameSession;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView          *firstPlayerImageView;
@@ -52,11 +45,7 @@
 @property (nonatomic, retain) IBOutlet UILabel              *scoreboard;
 @property (nonatomic, retain) IBOutlet UILabel              *currentResult;
 
-@property (nonatomic, retain) MainViewController *mainController;
-@property (nonatomic, retain, getter = newNotification) MessageNotificationController *newNotification;
-
 - (IBAction)play:(id)sender;
-- (IBAction)goBack:(id)sender;
 - (void)share;
 
 - (void)setupUserInterface;

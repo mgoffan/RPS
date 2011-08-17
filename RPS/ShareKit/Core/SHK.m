@@ -507,9 +507,12 @@ static NSDictionary *sharersDictionary = nil;
 	{
 		SHK *helper = [self currentHelper];
 		
-		if (helper.offlineQueue == nil)
-			helper.offlineQueue = [[NSOperationQueue alloc] init];		
-	
+		if (helper.offlineQueue == nil) {
+            NSOperationQueue *oQ = [[NSOperationQueue alloc] init];
+            helper.offlineQueue = oQ;
+            [oQ release];
+        }
+        
 		SHKItem *item;
 		NSString *sharerId, *uid;
 		
@@ -522,7 +525,7 @@ static NSDictionary *sharersDictionary = nil;
 			if (item != nil && sharerId != nil)
 				[helper.offlineQueue addOperation:[[[SHKOfflineSharer alloc] initWithItem:item forSharer:sharerId uid:uid] autorelease]];
 		}
-		
+        
 		// Remove offline queue - TODO: only do this if everything was successful?
 		[[NSFileManager defaultManager] removeItemAtPath:[self offlineQueueListPath] error:nil];
 

@@ -229,7 +229,9 @@ static SHKActivityIndicator *currentIndicator = nil;
 {	
 	if (spinner == nil)
 	{
-		self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        UIActivityIndicatorView *iV = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+		self.spinner = iV;
+        [iV release];
 
 		spinner.frame = CGRectMake(round(self.bounds.size.width/2 - spinner.frame.size.width/2),
 								round(self.bounds.size.height/2 - spinner.frame.size.height/2),

@@ -45,13 +45,14 @@
 {
     if ((self = [super initWithNibName:nil bundle:nil])) 
 	{
-		[self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-																								  target:self
-																								  action:@selector(cancel)] autorelease] animated:NO];
+        UIBarButtonItem *bI = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)] autorelease];
+		[self.navigationItem setLeftBarButtonItem:bI animated:NO];
+//        [bI release];
 		
 		self.delegate = d;
-		
-		self.webView = [[UIWebView alloc] initWithFrame:CGRectZero];
+        UIWebView *wB = [[UIWebView alloc] initWithFrame:CGRectZero];
+		self.webView = wB;
+        [wB release];
 		webView.delegate = self;
 		webView.scalesPageToFit = YES;
 		webView.dataDetectorTypes = UIDataDetectorTypeNone;
@@ -132,8 +133,11 @@
 {
 	if (spinner == nil)
 	{
-		self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-		[self.navigationItem setRightBarButtonItem:[[[UIBarButtonItem alloc] initWithCustomView:spinner] autorelease] animated:NO];
+        UIActivityIndicatorView *aI = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+		self.spinner = aI;
+        [aI release];
+        UIBarButtonItem *bI = [[[UIBarButtonItem alloc] initWithCustomView:spinner] autorelease];
+		[self.navigationItem setRightBarButtonItem:bI animated:NO];
 		spinner.hidesWhenStopped = YES;
 		[spinner release];
 	}

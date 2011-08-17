@@ -7,54 +7,48 @@
 //
 
 #import "MainViewController.h"
-#import "SinglePlayerViewController.h"
-#import "SettingsViewController.h"
-#import "MultiplayerViewController.h"
 #import "LoginViewController.h"
+
+#import "SinglePlayerViewController.h"
 
 @implementation MainViewController
 
-@synthesize sPlayerViewController;
-@synthesize settingsController;
-@synthesize multiplayerController;
-@synthesize loginController;
-
-@synthesize view;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    NSLog(@"aa");
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-    }
-    return self;
+- (void)allocateControllers {
+    NSLog(@"main allocate controllers");
 }
 
 - (void)flush:(id)anObject {
     [anObject release];
     anObject = nil;
+    NSLog(@"main flush");
 }
 
 - (void)animationDidStop:(NSString *)animID finished:(BOOL)didFinish context:(void *)context {
+    NSLog(@"main anim did stop");
     [self flush:loginController];
 }
 
 - (void)setupLogin {
-    loginController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
-    
-    [self.view addSubview:loginController.view];
-    
-    [UIView beginAnimations:nil context:nil];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDelay:1.0];
-    [UIView setAnimationDuration:1.5];
-    
-    loginController.loginUp.frame = CGRectMake(0, -loginController.loginUp.frame.size.width, loginController.loginUp.frame.size.width, loginController.loginUp.frame.size.height);
-    loginController.loginDown.frame = CGRectMake(0, self.view.frame.size.height + loginController.loginDown.frame.size.height, loginController.loginDown.frame.size.width, loginController.loginDown.frame.size.height);
-    
-    loginController.view.alpha = 0.0;
-    
-    [UIView commitAnimations];
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"hasLaunched"]) {
+        loginController = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:nil];
+        
+        [self.view addSubview:loginController.view];
+        
+        [UIView beginAnimations:nil context:nil];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [UIView setAnimationDelegate:self];
+        [UIView setAnimationDelay:1.5];
+        [UIView setAnimationDuration:1.5];
+        
+        loginController.loginUp.frame = CGRectMake(0, -loginController.loginUp.frame.size.width, loginController.loginUp.frame.size.width, loginController.loginUp.frame.size.height);
+        loginController.loginDown.frame = CGRectMake(0, self.view.frame.size.height + loginController.loginDown.frame.size.height, loginController.loginDown.frame.size.width, loginController.loginDown.frame.size.height);
+        
+        loginController.view.alpha = 0.0;
+        
+        [UIView commitAnimations];
+        
+        [[NSUserDefaults standardUserDefaults] setBool:kIsNotFirstTime forKey:@"hasLaunched"];
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -67,53 +61,21 @@
 
 #pragma mark - View lifecycle
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
-
-
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
+    NSLog(@"main view load");
+    
+    SPController = [[SinglePlayerViewController alloc] initWithNibName:@"SinglePlayerView" bundle:nil];
+    
+    [self setupLogin];
+    
     [super viewDidLoad];
-    
-    NSLog(@"aa");
 }
 
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
+    NSLog(@"main view unload");
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (IBAction)goSinglePlayer:(id)sender {
-    sPlayerViewController = [[SinglePlayerViewController alloc] initWithNibName:@"SinglePlayerView" bundle:nil];
-    
-    UIView *currentView = self.view;
-    UIView *theWindow = [currentView superview];
-    UIView *newView = sPlayerViewController.view;
-    newView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 + 20);
-    
-    [currentView removeFromSuperview];
-    [theWindow addSubview:newView];
-    
-    CATransition *animation = [CATransition animation];
-    [animation setDuration:0.5];
-    [animation setType:kCATransitionPush];
-    [animation setSubtype:kCATransitionFromRight];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    
-    [[theWindow layer] addAnimation:animation forKey:@"SwitchToSinglePlayer"];
-    
-    [sPlayerViewController setupGameLogic];
-    [sPlayerViewController setupNotifications];
-    [sPlayerViewController setupUserInterface];
-    
-    [sPlayerViewController release];
 }
 
 //GameKit Methods
@@ -156,42 +118,22 @@
     gameSession = session;
 }
 
-- (IBAction)goMultiplayer:(id)sender {
+- (void)goMultiplayer:(id)sender {
+    NSLog(@"main gomulti");
     GKPeerPickerController *peerPickerController = [[[GKPeerPickerController alloc] init] autorelease];
     [peerPickerController show];
     
     [gameSession initWithSessionID:nil displayName:nil sessionMode:GKSessionModePeer];
     gameSession.available = YES;
     gameSession.delegate  = self;
-    //    GKMatchRequest *request = [[[GKMatchRequest alloc] init] autorelease];
-    //    request.minPlayers = 2;
-    //    request.maxPlayers = 2;
-    //    
-    //    GKMatchmakerViewController *mmvc = [[[GKMatchmakerViewController alloc] initWithMatchRequest:request] autorelease];
-    //    mmvc.matchmakerDelegate = self;
-    //    
-    //    [self presentModalViewController:mmvc animated:YES];
+    /*GKMatchRequest *request = [[[GKMatchRequest alloc] init] autorelease];
+    request.minPlayers = 2;
+    request.maxPlayers = 2;
+    
+    GKMatchmakerViewController *mmvc = [[[GKMatchmakerViewController alloc] initWithMatchRequest:request] autorelease];
+    mmvc.matchmakerDelegate = self;
+    
+    [self presentModalViewController:mmvc animated:YES]; */
 }
 
-- (IBAction)goSettings:(id)sender {
-    settingsController = [[SettingsViewController alloc] initWithNibName:@"SettingsView" bundle:nil];
-    
-    UIView *currentView = self.view;
-    UIView *theWindow = [currentView superview];
-    UIView *newView = settingsController.view;
-    newView.center = CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2 + 20);
-    
-    [currentView removeFromSuperview];
-    [theWindow addSubview:newView];
-    
-    CATransition *animation = [CATransition animation];
-    [animation setDuration:0.5];
-    [animation setType:kCATransitionPush];
-    [animation setSubtype:kCATransitionFromRight];
-    [animation setTimingFunction:[CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut]];
-    
-    [[theWindow layer] addAnimation:animation forKey:@"SwitchToSettings"];
-    
-    [settingsController release];
-}
 @end

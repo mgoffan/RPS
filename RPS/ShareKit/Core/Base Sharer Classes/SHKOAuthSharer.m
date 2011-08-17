@@ -113,8 +113,10 @@
 	{
 		NSString *responseBody = [[NSString alloc] initWithData:data
 													   encoding:NSUTF8StringEncoding];
-		self.requestToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+        OAToken *nT = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+		self.requestToken = nT;
 		[responseBody release];
+        [nT release];
 		
 		[self tokenAuthorize];
 	}
@@ -220,8 +222,10 @@
 	{
 		NSString *responseBody = [[NSString alloc] initWithData:data
 													   encoding:NSUTF8StringEncoding];
-		self.accessToken = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+        OAToken *nT = [[OAToken alloc] initWithHTTPResponseBody:responseBody];
+		self.accessToken = nT;
 		[responseBody release];
+        [nT release];
 		
 		[self storeAccessToken];
 		

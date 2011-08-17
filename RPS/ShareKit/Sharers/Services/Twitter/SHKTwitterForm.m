@@ -47,16 +47,14 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
-    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) 
-	{		
-		self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
-																							  target:self
-																							  action:@selector(cancel)];
+    if ((self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])) {
+		UIBarButtonItem *bI = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancel)];
+        UIBarButtonItem *bI2 = [[UIBarButtonItem alloc] initWithTitle:SHKLocalizedString(@"Send to Twitter") style:UIBarButtonItemStyleDone target:self action:@selector(save)];
+		self.navigationItem.leftBarButtonItem = bI;
 		
-		self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:SHKLocalizedString(@"Send to Twitter")
-																				  style:UIBarButtonItemStyleDone
-																				 target:self
-																				 action:@selector(save)];
+		self.navigationItem.rightBarButtonItem = bI2;
+        [bI release];
+        [bI2 release];
     }
     return self;
 }
@@ -68,8 +66,9 @@
 	[super loadView];
 	
 	self.view.backgroundColor = [UIColor whiteColor];
-	
-	self.textView = [[UITextView alloc] initWithFrame:self.view.bounds];
+	UITextView *tV = [[UITextView alloc] initWithFrame:self.view.bounds];
+	self.textView = tV;
+    [tV release];
 	textView.delegate = self;
 	textView.font = [UIFont systemFontOfSize:15];
 	textView.contentInset = UIEdgeInsetsMake(5,5,0,0);
@@ -145,7 +144,6 @@
 	
 	CGFloat distFromBottom = screenHeight - ((upsideDown ? screenHeight - topOfView : topOfView ) + self.view.bounds.size.height) + ([UIApplication sharedApplication].statusBarHidden || upsideDown ? 0 : 20);							
 	CGFloat maxViewHeight = self.view.bounds.size.height - keyboardHeight + distFromBottom;
-	
 	textView.frame = CGRectMake(0,0,self.view.bounds.size.width,maxViewHeight);
 	[self layoutCounter];
 }
@@ -157,7 +155,9 @@
 {
 	if (counter == nil)
 	{
-		self.counter = [[UILabel alloc] initWithFrame:CGRectZero];
+        UILabel *aL = [[UILabel alloc] initWithFrame:CGRectZero];
+		self.counter = aL;
+        [aL release];
 		counter.backgroundColor = [UIColor clearColor];
 		counter.opaque = NO;
 		counter.font = [UIFont boldSystemFontOfSize:14];

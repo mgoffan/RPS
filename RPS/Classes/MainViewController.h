@@ -10,30 +10,21 @@
 #import <QuartzCore/QuartzCore.h>
 #import <GameKit/GameKit.h>
 
-@class SinglePlayerViewController;
-@class SettingsViewController;
-@class MultiplayerViewController;
+#import "GameData.h"
 
 @class LoginViewController;
 
+@class SinglePlayerViewController;
+
 @interface MainViewController : UIViewController <GKSessionDelegate, GKPeerPickerControllerDelegate> {
-    SinglePlayerViewController *sPlayerViewController;
+@private
     LoginViewController        *loginController;
-    SettingsViewController     *settingsController;
-    MultiplayerViewController  *multiplayerController;
+    SinglePlayerViewController *SPController;
     
     GKSession *gameSession;
 }
 
-@property (nonatomic, retain) SinglePlayerViewController *sPlayerViewController;
-@property (nonatomic, retain) LoginViewController        *loginController;
-@property (nonatomic, retain) SettingsViewController     *settingsController;
-@property (nonatomic, retain) MultiplayerViewController  *multiplayerController;
-
-- (IBAction)goSinglePlayer:(id)sender;
-- (IBAction)goMultiplayer:(id)sender;
-- (IBAction)goSettings:(id)sender;
-
 - (void)setupLogin;
+- (void)allocateControllers;
 
 @end

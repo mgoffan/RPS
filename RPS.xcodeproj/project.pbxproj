@@ -131,6 +131,7 @@
 		5BD909D313C7B6BB007A0693 /* enter_up_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BD909D113C7B6BB007A0693 /* enter_up_iPad.png */; };
 		5BD909D613C7B6EB007A0693 /* LoginViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BD909D413C7B6EB007A0693 /* LoginViewController-iPad.xib */; };
 		5BE43CF613F4A11E004D6884 /* Storyboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5BE43CF413F4A11E004D6884 /* Storyboard_iPhone.storyboard */; };
+		5BEFC26713FB44AE00059501 /* MessageNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BEFC26613FB44AE00059501 /* MessageNotificationView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -331,6 +332,8 @@
 		5BDF399513E48736004F16F6 /* GameData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GameData.h; path = Classes/GameData.h; sourceTree = "<group>"; };
 		5BE43CF513F4A11E004D6884 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/Storyboard_iPhone.storyboard; sourceTree = "<group>"; };
 		5BE43CFB13F4A161004D6884 /* es */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = es; path = es.lproj/Storyboard_iPhone.storyboard; sourceTree = "<group>"; };
+		5BEFC26513FB44AE00059501 /* MessageNotificationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessageNotificationView.h; path = Classes/MessageNotificationView.h; sourceTree = "<group>"; };
+		5BEFC26613FB44AE00059501 /* MessageNotificationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessageNotificationView.m; path = Classes/MessageNotificationView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -857,6 +860,8 @@
 			children = (
 				5B4EDBC513BFA7910073F054 /* MessageNotificationController.h */,
 				5B4EDBC613BFA7910073F054 /* MessageNotificationController.m */,
+				5BEFC26513FB44AE00059501 /* MessageNotificationView.h */,
+				5BEFC26613FB44AE00059501 /* MessageNotificationView.m */,
 			);
 			name = Notification;
 			sourceTree = "<group>";
@@ -1140,6 +1145,7 @@
 				5BD909CB13C7B124007A0693 /* LoginViewController.m in Sources */,
 				5B37859413DBC4A40082D1FD /* MainViewController.m in Sources */,
 				5B0586CB13DC80B7007B3CC5 /* MultiplayerViewController.m in Sources */,
+				5BEFC26713FB44AE00059501 /* MessageNotificationView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

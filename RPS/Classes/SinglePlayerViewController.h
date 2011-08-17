@@ -17,11 +17,12 @@
 #define NOTIFICATION_HEIGHT     theNotification.view.frame.size.height
 
 #import <UIKit/UIKit.h>
+#import "MessageNotificationView.h"
 
 @class MessageNotificationController;
 @class MainViewController;
 
-@interface SinglePlayerViewController : UIViewController {
+@interface SinglePlayerViewController : UIViewController <MessageNotificationViewDelegate>{
     
     UIImageView            *_firstPlayerImageView;
     UIImageView            *_COMImageView;
@@ -30,6 +31,9 @@
     UILabel                *_currentResult;
     
     MessageNotificationController   *theNotification;
+    
+    MessageNotificationView *aNotification;
+    
     MainViewController              *mainController;
     
     NSInteger                       playerPoints;

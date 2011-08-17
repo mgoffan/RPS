@@ -85,11 +85,7 @@
     <classes>
         <class className="MainViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="goMultiplayer:"/>
-                <relationship kind="action" name="goSettings:"/>
-                <relationship kind="action" name="goSinglePlayer:"/>
-            </relationships>
+            <relationships/>
         </class>
         <class className="MultiplayerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MultiplayerViewController.h"/>
@@ -99,14 +95,12 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
             <relationships>
                 <relationship kind="action" name="segmentedControlValueChanged:" candidateClass="UIEvent"/>
-                <relationship kind="outlet" name="navItem" candidateClass="UINavigationItem"/>
                 <relationship kind="outlet" name="segmentedControl" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>
         <class className="SinglePlayerViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SinglePlayerViewController.h"/>
             <relationships>
-                <relationship kind="action" name="goBack:"/>
                 <relationship kind="action" name="play:"/>
                 <relationship kind="outlet" name="COMImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="currentResult" candidateClass="UILabel"/>

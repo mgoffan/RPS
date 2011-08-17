@@ -97,6 +97,10 @@
 }
 
 - (void)setupNotifications {
+    aNotification = [[MessageNotificationView alloc] initWithFrame:CGRectMake(0, -70, 320, 68)];
+    [self.view addSubview:aNotification];
+    
+    
     theNotification = (iPad) ? [[[MessageNotificationController alloc] initWithNibName:@"Notification-iPad" bundle:[NSBundle mainBundle]] autorelease] : [[[MessageNotificationController alloc] initWithNibName:@"Notification" bundle:[NSBundle mainBundle]] autorelease];
     
     theNotification.view.frame = CGRectMake(0, -20, NOTIFICATION_WIDTH, NOTIFICATION_WIDTH);
@@ -123,27 +127,38 @@
 - (void)hideNotification {
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:kAnimationDurationHide];
-    theNotification.view.frame = CGRectMake(0, -20, NOTIFICATION_WIDTH, NOTIFICATION_WIDTH);
-    theNotification.view.alpha = 0.0;
+//    theNotification.view.frame = CGRectMake(0, -20, NOTIFICATION_WIDTH, NOTIFICATION_WIDTH);
+//    theNotification.view.alpha = 0.0;
+    aNotification.frame = CGRectMake(0, -70, 320, 68);
+    aNotification.alpha = 0.0;
     [UIView commitAnimations];
     [self performSelector:@selector(reset)];
 }
 
 - (void)presentNotification {
     if (userDidWin) {
-        theNotification.myMessage = [NSString stringWithFormat:resultWon, [[NSUserDefaults standardUserDefaults] integerForKey:@"playerPoints"], [[NSUserDefaults standardUserDefaults] integerForKey:@"iDevicePoints"]];
-        [theNotification image:[UIImage imageNamed:@"trophy.png"]];
+        aNotification.isWon = YES;
+        aNotification.notification = [NSString stringWithFormat:resultWon, [[NSUserDefaults standardUserDefaults] integerForKey:@"playerPoints"], [[NSUserDefaults standardUserDefaults] integerForKey:@"iDevicePoints"]];
+//        theNotification.myMessage = [NSString stringWithFormat:resultWon, [[NSUserDefaults standardUserDefaults] integerForKey:@"playerPoints"], [[NSUserDefaults standardUserDefaults] integerForKey:@"iDevicePoints"]];
+//        [theNotification image:[UIImage imageNamed:@"trophy.png"]];
     }
     else {
-        theNotification.myMessage = [NSString stringWithFormat:resultLost, [[NSUserDefaults standardUserDefaults] integerForKey:@"playerPoints"], [[NSUserDefaults standardUserDefaults] integerForKey:@"iDevicePoints"]];
-        [theNotification image:[UIImage imageNamed:@"trophy.png"]];
-        [theNotification image:[UIImage imageNamed:@"lost_inverted.png"]];
+        aNotification.isWon = NO;
+        aNotification.notification = [NSString stringWithFormat:resultLost, [[NSUserDefaults standardUserDefaults] integerForKey:@"playerPoints"], [[NSUserDefaults standardUserDefaults] integerForKey:@"iDevicePoints"]];
+//        NSInteger a = [[NSUserDefaults standardUserDefaults] integerForKey:@"playerPoints"];
+//        NSInteger b = [[NSUserDefaults standardUserDefaults] integerForKey:@"iDevicePoints"];
+//        NSString * sth = resultLost;
+        //NSString *aString = [NSString stringWithFormat:resultLost, [[NSUserDefaults standardUserDefaults] integerForKey:@"playerPoints"], [[NSUserDefaults standardUserDefaults] integerForKey:@"iDevicePoints"]];
+//        theNotification.myMessage = sth;//[NSString stringWithFormat:resultLost, [[NSUserDefaults standardUserDefaults] integerForKey:@"playerPoints"], [[NSUserDefaults standardUserDefaults] integerForKey:@"iDevicePoints"]];
+//        [theNotification image:[UIImage imageNamed:@"lost.png"]];
     }
     
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:kAnimationDurationShow];
-    theNotification.view.alpha = 1.0;
-    theNotification.view.center = CGPointMake((VIEW_WIDTH / 2), (VIEW_HEIGHT / 2));
+//    theNotification.view.alpha = 1.0;
+//    theNotification.view.center = CGPointMake((VIEW_WIDTH / 2), (VIEW_HEIGHT / 2));
+    aNotification.alpha = 1.0;
+    aNotification.center = CGPointMake((VIEW_WIDTH / 2), (VIEW_HEIGHT / 2));
     [UIView commitAnimations];
     
     [self performSelector:@selector(hideNotification) withObject:nil afterDelay:5.0];
@@ -236,6 +251,10 @@
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event {
 	if (motion == UIEventSubtypeMotionShake) [self play:nil];
+}
+
+- (void)messageNotificationDidShare:(MessageNotificationView *)messageNotificationView {
+    [self share];
 }
 
 //Dealloc
